@@ -2,7 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Handshake, CheckCircle2, FileText, TrendingUp, ChevronRight } from "lucide-react";
+import { Handshake, CheckCircle2, FileText, TrendingUp } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Fornecedores = () => {
   const requirements = [
@@ -124,16 +125,20 @@ const Fornecedores = () => {
             <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10">
               Entre em contato conosco e apresente sua empresa. Estamos ansiosos para conhecer sua proposta.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-                Enviar proposta por e-mail
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                Ligar agora
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
-            </div>
+            <Button 
+              asChild
+              size="lg" 
+              className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-lg px-8 shadow-lg"
+            >
+              <a 
+                href="https://wa.me/5515996697107?text=Olá%20M3!%20Gostaria%20de%20me%20cadastrar%20como%20fornecedor."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaWhatsapp className="mr-2 w-6 h-6" />
+                Falar pelo WhatsApp
+              </a>
+            </Button>
           </div>
         </section>
       </main>

@@ -2,8 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Link } from "react-router-dom";
-import { 
+import {
   Building2, 
   Factory, 
   Hammer, 
@@ -65,9 +64,32 @@ const Home = () => {
   ];
 
   const projects = [
-    { image: projeto1, title: "Galpão Industrial 5.000m²" },
-    { image: projeto2, title: "Centro Logístico 8.000m²" },
-    { image: projeto3, title: "Fábrica Completa 3.500m²" },
+    { 
+      image: projeto1, 
+      title: "Galpão Industrial Alimentício",
+      description: "Estrutura completa em pré-moldado para linha de produção alimentícia",
+      year: "2024",
+      location: "São Paulo, SP",
+      area: "2.500 m² construídos",
+      client: "Indústria de Alimentos ABC"
+    },
+    { 
+      image: projeto2, 
+      title: "Centro de Distribuição Logístico",
+      description: "Galpão logístico com estrutura metálica e pré-moldados",
+      year: "2023",
+      location: "Campinas, SP",
+      area: "3.200 m² construídos"
+    },
+    { 
+      image: projeto3, 
+      title: "Complexo Industrial Químico",
+      description: "Estruturas especializadas para indústria química",
+      year: "2023",
+      location: "Sorocaba, SP",
+      area: "1.800 m² construídos",
+      client: "Química Industrial XYZ"
+    },
   ];
 
   const differentials = [
@@ -93,9 +115,6 @@ const Home = () => {
     },
   ];
 
-  const clients = [
-    "Cliente A", "Cliente B", "Cliente C", "Cliente D", "Cliente E"
-  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -103,7 +122,7 @@ const Home = () => {
       
       <main className="flex-1">
         {/* Seção 01 - Hero */}
-        <section className="relative min-h-[90vh] flex items-center">
+        <section id="hero" className="relative min-h-[90vh] flex items-center">
           <div className="absolute inset-0 z-0">
             <img 
               src={heroImage} 
@@ -125,12 +144,14 @@ const Home = () => {
                 Nossa gestão e fabricação própria eliminam atrasos e garantem a qualidade que sua indústria precisa para crescer com segurança
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8">
-                  Solicite um orçamento
-                  <ChevronRight className="ml-2 w-5 h-5" />
+                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8">
+                  <a href="#contato">
+                    Solicite um orçamento
+                    <ChevronRight className="ml-2 w-5 h-5" />
+                  </a>
                 </Button>
-                <Button size="lg" variant="outline" className="bg-background/10 border-primary-foreground text-primary-foreground hover:bg-background/20 text-lg px-8">
-                  Conheça nossos projetos
+                <Button asChild size="lg" variant="outline" className="bg-background/10 border-primary-foreground text-primary-foreground hover:bg-background/20 text-lg px-8">
+                  <a href="#portfolio">Conheça nossos projetos</a>
                 </Button>
               </div>
             </div>
@@ -155,7 +176,7 @@ const Home = () => {
         </section>
 
         {/* Seção 03 - Atuação */}
-        <section className="py-20 bg-muted">
+        <section id="servicos" className="py-20 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
@@ -179,9 +200,11 @@ const Home = () => {
               })}
             </div>
             <div className="text-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Solicite um orçamento
-                <ChevronRight className="ml-2 w-5 h-5" />
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <a href="#contato">
+                  Solicite um orçamento
+                  <ChevronRight className="ml-2 w-5 h-5" />
+                </a>
               </Button>
             </div>
           </div>
@@ -234,61 +257,67 @@ const Home = () => {
         </section>
 
         {/* Seção 05 - Portfólio */}
-        <section className="py-20 bg-muted">
+        <section id="portfolio" className="py-20 bg-muted">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
-                Veja construções entregues, que impulsionam as indústrias
+                Portfólio de Projetos Entregues
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {projects.map((project, index) => (
-                <div key={index} className="group cursor-pointer">
-                  <div className="relative overflow-hidden rounded-lg shadow-lg">
+                <Card key={index} className="border-border overflow-hidden hover:shadow-xl transition-shadow">
+                  <div className="relative">
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-110"
+                      className="w-full h-64 object-cover"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 to-transparent flex items-end p-6">
-                      <h3 className="text-xl font-bold text-primary-foreground">{project.title}</h3>
+                    <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-md font-bold">
+                      {project.year}
                     </div>
                   </div>
-                </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-foreground mb-3">{project.title}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
+                    <div className="space-y-2 mb-4 text-sm">
+                      <div className="flex items-center text-muted-foreground">
+                        <span className="mr-2">📍</span>
+                        <span>{project.location}</span>
+                      </div>
+                      <div className="flex items-center text-muted-foreground">
+                        <span className="mr-2">📐</span>
+                        <span>{project.area}</span>
+                      </div>
+                      {project.client && (
+                        <div className="flex items-center text-muted-foreground">
+                          <span className="mr-2">🏢</span>
+                          <span>{project.client}</span>
+                        </div>
+                      )}
+                    </div>
+                    <Button variant="outline" className="w-full" asChild>
+                      <a href="#">Ver Detalhes do Projeto</a>
+                    </Button>
+                  </CardContent>
+                </Card>
               ))}
             </div>
             <div className="text-center">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Solicite um orçamento
-                <ChevronRight className="ml-2 w-5 h-5" />
+              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <a href="#contato">
+                  Solicite um orçamento
+                  <ChevronRight className="ml-2 w-5 h-5" />
+                </a>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* Seção 06 - Clientes */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                Clientes que são nossos parceiros
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Empresas que confiam na M3 para construir seu futuro
-              </p>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center">
-              {clients.map((client, index) => (
-                <div key={index} className="flex items-center justify-center p-6 border border-border rounded-lg hover:shadow-md transition-shadow">
-                  <span className="text-lg font-semibold text-muted-foreground">{client}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
-        {/* Seção 07 - Diferenciais */}
-        <section className="py-20 bg-muted">
+        {/* Seção 06 - Diferenciais */}
+        <section id="diferenciais" className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
@@ -314,7 +343,7 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Seção 08 - Essência */}
+        {/* Seção 07 - Essência */}
         <section className="py-24 bg-primary">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
@@ -323,57 +352,65 @@ const Home = () => {
             <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-10 leading-relaxed">
               Quando você escolhe a M3, escolhe a certeza de prazos cumpridos e qualidade impecável. Nossa experiência e fabricação própria transformam seu projeto em realidade com total segurança.
             </p>
-            <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-10">
-              Solicite um orçamento
-              <ChevronRight className="ml-2 w-5 h-5" />
+            <Button asChild size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-10">
+              <a href="#contato">
+                Solicite um orçamento
+                <ChevronRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
           </div>
         </section>
 
-        {/* Seção 09 - Sobre Nós */}
-        <section className="py-20 bg-background">
+        {/* Seção 08 - Sobre Nós */}
+        <section id="sobre" className="py-20 bg-muted">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="relative">
-                <img 
-                  src={equipeImage} 
-                  alt="Equipe M3 Engenharia" 
-                  className="rounded-lg shadow-xl w-full"
-                />
-              </div>
-              <div>
-                <h2 className="text-4xl font-bold text-foreground mb-4">
-                  Conheça a M3 Engenharia e Construções
-                </h2>
-                <h3 className="text-2xl font-semibold text-primary mb-6">
-                  Prazer, somos a M3 Engenharia e Construções
-                </h3>
-                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                  <p>
-                    Fundada em 2022, a M3 Engenharia e Construções nasceu com o propósito de revolucionar o mercado de construções industriais. Com profissionais que acumulam mais de 20 anos de experiência no setor, trazemos expertise consolidada para cada projeto.
-                  </p>
-                  <p>
-                    Nosso foco é exclusivo em obras industriais, o que nos permite entregar soluções especializadas e personalizadas. Um dos nossos maiores orgulhos é ter realizado 10 obras consecutivas com o mesmo cliente, demonstrando a confiança e satisfação em nosso trabalho.
-                  </p>
-                  <p>
-                    Com fabricação própria de pré-moldados e estruturas metálicas, garantimos qualidade superior, prazos cumpridos e o melhor custo-benefício para sua indústria crescer com segurança.
-                  </p>
-                </div>
-                <div className="mt-8">
-                  <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                    <Link to="/sobre">
-                      Saiba mais sobre nós
-                      <ChevronRight className="ml-2 w-5 h-5" />
-                    </Link>
-                  </Button>
-                </div>
-              </div>
+            <div className="text-center max-w-4xl mx-auto mb-16">
+              <h2 className="text-5xl font-bold text-foreground mb-6">
+                Engenharia que Você Pode Confiar
+              </h2>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                Fundada em 2022, a M3 Engenharia nasceu com o propósito de oferecer tranquilidade total aos clientes. Nosso foco está em obras industriais e estruturas pré-moldadas, com agilidade, segurança e qualidade. Já conquistamos 10 obras consecutivas com o mesmo cliente, prova da nossa dedicação e excelência.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              <Card className="border-border text-center hover:shadow-lg transition-shadow">
+                <CardContent className="p-8">
+                  <div className="text-6xl font-bold text-primary mb-3">2022</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Ano de Fundação</div>
+                  <div className="text-sm text-muted-foreground">Empresa jovem e inovadora</div>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-border text-center hover:shadow-lg transition-shadow">
+                <CardContent className="p-8">
+                  <div className="text-6xl font-bold text-primary mb-3">20+</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Anos de Experiência</div>
+                  <div className="text-sm text-muted-foreground">Da equipe técnica</div>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-border text-center hover:shadow-lg transition-shadow">
+                <CardContent className="p-8">
+                  <div className="text-6xl font-bold text-primary mb-3">100%</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Projetos no Prazo</div>
+                  <div className="text-sm text-muted-foreground">Histórico comprovado</div>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-border text-center hover:shadow-lg transition-shadow">
+                <CardContent className="p-8">
+                  <div className="text-6xl font-bold text-primary mb-3">50+</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Clientes Atendidos</div>
+                  <div className="text-sm text-muted-foreground">Satisfação garantida</div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
 
-        {/* Seção 10 - Hero Final / CTA */}
-        <section id="contato" className="py-24 bg-gradient-to-br from-muted to-background">
+        {/* Seção 09 - Hero Final / CTA */}
+        <section id="contato" className="py-24 bg-gradient-to-br from-primary/5 to-background">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 max-w-4xl mx-auto leading-tight">
               Conte com as nossas soluções para construir ou expandir a sua operação industrial
@@ -382,14 +419,10 @@ const Home = () => {
               Fale conosco e veja como nossas soluções garantem agilidade e segurança
             </p>
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10">
-              Solicite um orçamento agora
+              Solicite um orçamento
               <ChevronRight className="ml-2 w-5 h-5" />
             </Button>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">24h</div>
-                <div className="text-sm text-muted-foreground">Retorno de orçamento</div>
-              </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">100%</div>
                 <div className="text-sm text-muted-foreground">Obras entregues no prazo</div>
@@ -397,6 +430,10 @@ const Home = () => {
               <div className="text-center">
                 <div className="text-3xl font-bold text-primary mb-2">10+</div>
                 <div className="text-sm text-muted-foreground">Obras consecutivas com mesmo cliente</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-primary mb-2">20+</div>
+                <div className="text-sm text-muted-foreground">Anos de experiência da equipe</div>
               </div>
             </div>
           </div>

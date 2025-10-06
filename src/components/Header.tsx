@@ -1,35 +1,25 @@
-import { Link, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { useState } from "react";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
 
   const navigation = [
-    { name: "Início", href: "/" },
-    {
-      name: "Serviços",
-      items: [
-        { name: "Galpão Industrial", href: "/galpao-industrial" },
-        { name: "Pré-Moldados", href: "/pre-moldados" },
-        { name: "Estruturas Metálicas", href: "/estruturas-metalicas" },
-      ],
-    },
-    { name: "Sobre Nós", href: "/sobre" },
-    { name: "Fornecedores", href: "/fornecedores" },
-    { name: "Trabalhe Conosco", href: "/trabalhe-conosco" },
+    { name: "Início", href: "#hero" },
+    { name: "Sobre Nós", href: "#sobre" },
+    { name: "Serviços", href: "#servicos" },
+    { name: "Portfólio", href: "#portfolio" },
+    { name: "Diferenciais", href: "#diferenciais" },
+    { name: "Contato", href: "#contato" },
   ];
-
-  const isActive = (href: string) => location.pathname === href;
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background border-b border-border">
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
+          <a href="#hero" className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-2xl font-bold text-primary-foreground">M3</span>
             </div>
@@ -37,40 +27,18 @@ const Header = () => {
               <span className="text-lg font-bold text-foreground leading-tight">M3 Engenharia</span>
               <span className="text-xs text-muted-foreground">& Construções</span>
             </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
-              <div key={item.name} className="relative group">
-                {item.href ? (
-                  <Link
-                    to={item.href}
-                    className={`text-sm font-medium transition-colors hover:text-primary ${
-                      isActive(item.href) ? "text-primary" : "text-foreground"
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
-                ) : (
-                  <>
-                    <button className="text-sm font-medium text-foreground hover:text-primary transition-colors">
-                      {item.name}
-                    </button>
-                    <div className="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 bg-background border border-border rounded-lg shadow-lg py-2">
-                      {item.items?.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.href}
-                          className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors"
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </div>
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium transition-colors hover:text-primary text-foreground"
+              >
+                {item.name}
+              </a>
             ))}
           </nav>
 
@@ -87,7 +55,7 @@ const Header = () => {
               </a>
             </div>
             <Button asChild variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <Link to="/#contato">Solicitar Orçamento</Link>
+              <a href="#contato">Solicitar Orçamento</a>
             </Button>
           </div>
 
@@ -106,40 +74,19 @@ const Header = () => {
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
               {navigation.map((item) => (
-                <div key={item.name}>
-                  {item.href ? (
-                    <Link
-                      to={item.href}
-                      className={`block text-sm font-medium py-2 ${
-                        isActive(item.href) ? "text-primary" : "text-foreground"
-                      }`}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ) : (
-                    <>
-                      <span className="block text-sm font-medium text-foreground py-2">{item.name}</span>
-                      <div className="pl-4 flex flex-col space-y-2">
-                        {item.items?.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            to={subItem.href}
-                            className="text-sm text-muted-foreground hover:text-primary"
-                            onClick={() => setMobileMenuOpen(false)}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </div>
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="block text-sm font-medium py-2 text-foreground"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
               ))}
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <Link to="/#contato" onClick={() => setMobileMenuOpen(false)}>
+                <a href="#contato" onClick={() => setMobileMenuOpen(false)}>
                   Solicitar Orçamento
-                </Link>
+                </a>
               </Button>
             </nav>
           </div>

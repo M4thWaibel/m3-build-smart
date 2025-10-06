@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
@@ -38,24 +37,24 @@ const Footer = () => {
             <h3 className="font-semibold text-background mb-4">Links Rápidos</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="#hero" className="text-sm text-secondary hover:text-primary transition-colors">
                   Início
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/sobre" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="#sobre" className="text-sm text-secondary hover:text-primary transition-colors">
                   Sobre Nós
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/fornecedores" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Seja Nosso Fornecedor
-                </Link>
+                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
+                  Serviços
+                </a>
               </li>
               <li>
-                <Link to="/trabalhe-conosco" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Trabalhe Conosco
-                </Link>
+                <a href="#contato" className="text-sm text-secondary hover:text-primary transition-colors">
+                  Contato
+                </a>
               </li>
             </ul>
           </div>
@@ -65,19 +64,19 @@ const Footer = () => {
             <h3 className="font-semibold text-background mb-4">Serviços</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/galpao-industrial" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
                   Galpão Industrial
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/pre-moldados" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
                   Pré-Moldados
-                </Link>
+                </a>
               </li>
               <li>
-                <Link to="/estruturas-metalicas" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
                   Estruturas Metálicas
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

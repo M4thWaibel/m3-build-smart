@@ -297,9 +297,11 @@ const Home = () => {
                         </div>
                       )}
                     </div>
+                    {/*  
                     <Button variant="outline" className="w-full" asChild>
                       <a href="#">Ver Detalhes do Projeto</a>
                     </Button>
+                    */}
                   </CardContent>
                 </Card>
               ))}

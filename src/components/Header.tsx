@@ -80,10 +80,12 @@ const Header = () => {
                   {item.name}
                 </a>
               ))}
-              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a href="#" id="cta-merlin7" onClick={() => setMobileMenuOpen(false)}>
-                  Solicitar Orçamento
-                </a>
+              <Button 
+                id="cta-merlin7" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground w-full"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Solicitar Orçamento
               </Button>
             </nav>
           </div>

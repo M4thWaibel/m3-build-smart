@@ -145,7 +145,7 @@ const Home = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8">
-                  <a href="#contato">
+                  <a href="#" id="cta-merlin1">
                     Solicite um orçamento
                     <ChevronRight className="ml-2 w-5 h-5" />
                   </a>
@@ -201,7 +201,7 @@ const Home = () => {
             </div>
             <div className="text-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a href="#contato">
+                <a href="#" id="cta-merlin2">
                   Solicite um orçamento
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </a>
@@ -306,7 +306,7 @@ const Home = () => {
             </div>
             <div className="text-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a href="#contato">
+                <a href="#" id="cta-merlin3">
                   Solicite um orçamento
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </a>
@@ -353,7 +353,7 @@ const Home = () => {
               Quando você escolhe a M3, escolhe a certeza de prazos cumpridos e qualidade impecável. Nossa experiência e fabricação própria transformam seu projeto em realidade com total segurança.
             </p>
             <Button asChild size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-10">
-              <a href="#contato">
+              <a href="#" id="cta-merlin4">
                 Solicite um orçamento
                 <ChevronRight className="ml-2 w-5 h-5" />
               </a>
@@ -418,9 +418,11 @@ const Home = () => {
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
               Fale conosco e veja como nossas soluções garantem agilidade e segurança
             </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10">
-              Solicite um orçamento
-              <ChevronRight className="ml-2 w-5 h-5" />
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10" asChild>
+              <a href="#" id="cta-merlin5">
+                Solicite um orçamento
+                <ChevronRight className="ml-2 w-5 h-5" />
+              </a>
             </Button>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
               <div className="text-center">

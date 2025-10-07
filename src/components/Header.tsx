@@ -52,7 +52,7 @@ const Header = () => {
               </a>
             </div>
             <Button asChild variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              <a href="#contato">Solicitar Orçamento</a>
+              <a href="#" id="cta-merlin6">Solicitar Orçamento</a>
             </Button>
           </div>
 
@@ -81,7 +81,7 @@ const Header = () => {
                 </a>
               ))}
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a href="#contato" onClick={() => setMobileMenuOpen(false)}>
+                <a href="#" id="cta-merlin7" onClick={() => setMobileMenuOpen(false)}>
                   Solicitar Orçamento
                 </a>
               </Button>

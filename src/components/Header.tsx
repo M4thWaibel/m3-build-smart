@@ -83,7 +83,11 @@ const Header = () => {
               <Button 
                 id="cta-merlin7" 
                 className="bg-primary hover:bg-primary/90 text-primary-foreground w-full"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  const merlinButton = document.querySelector('.merlin-button') as HTMLElement;
+                  merlinButton?.click();
+                }}
               >
                 Solicitar Orçamento
               </Button>

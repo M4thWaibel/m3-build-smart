@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 
-*/
-
 @layer base {
   :root {
     /* M3 Engenharia Color System - HSL Only */

@@ -43,7 +43,7 @@ const Header = () => {
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex flex-col items-end mr-4">
-              <a href="tel:+5515992635050" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
+              <a href="https://api.whatsapp.com/send/?phone=5515992635050&text&type=phone_number&app_absent=0" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
                 <Phone className="w-3 h-3 mr-1" />
                 (15) 99263-5050
               </a>

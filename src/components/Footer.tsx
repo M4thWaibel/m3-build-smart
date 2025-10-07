@@ -20,13 +20,13 @@ const Footer = () => {
               Soluções em construções industriais com fabricação própria e entrega garantida no prazo.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-secondary hover:text-primary transition-colors">
+              <a href="https://www.facebook.com/people/M3-Engenharia-e-Constru%C3%A7%C3%B5es/61568956907966/" className="text-secondary hover:text-primary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-secondary hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/m3construc/" className="text-secondary hover:text-primary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-secondary hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/company/m3-engenharia-e-contru%C3%A7%C3%B5es/?viewAsMember=true" className="text-secondary hover:text-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
@@ -94,7 +94,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-secondary" />
-                <a href="tel:+5515992635050" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="https://api.whatsapp.com/send/?phone=5515992635050&text&type=phone_number&app_absent=0" className="text-sm text-secondary hover:text-primary transition-colors">
                   (15) 99263-5050
                 </a>
               </li>

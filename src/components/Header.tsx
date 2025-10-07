@@ -24,7 +24,7 @@ const Header = () => {
             <img
               src={logo}
               alt="Logo M3 Engenharia e Construções"
-              className="w-25% h-auto object-contain rounded-lg"
+              className="w-16 h-auto object-contain rounded-lg"
             />
           </a>
 

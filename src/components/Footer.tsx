@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
+import logo from "../assets/logo.jpg"
 
 const Footer = () => {
   return (
@@ -8,13 +9,11 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-xl font-bold text-primary-foreground">M3</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-background leading-tight">M3 Engenharia</span>
-                <span className="text-xs text-secondary">& Construções</span>
-              </div>
+            <img
+              src={logo}
+              alt="Logo M3 Engenharia e Construções"
+              className="w-24 h-auto object-contain rounded-lg"
+            />
             </div>
             <p className="text-sm text-secondary mb-4">
               Soluções em construções industriais com fabricação própria e entrega garantida no prazo.

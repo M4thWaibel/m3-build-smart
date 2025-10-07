@@ -1,6 +1,7 @@
 import { Button } from "./ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { useState } from "react";
+import logo from "../assets/logo.jpg"
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ const Header = () => {
           {/* Logo */}
           <a href="#hero" className="flex items-center space-x-3">
             <img
-              src="/assets/logo.jpg"
+              src={logo}
               alt="Logo M3 Engenharia e Construções"
               className="w-24 h-auto object-contain rounded-lg"
             />

@@ -54,12 +54,12 @@ const Home = () => {
     {
       icon: Hammer,
       title: "Pré-moldados fabricados",
-      description: "Pilares, vigas, placas, escadas, muros e muito mais",
+      description: "Pilares, vigas, placas de fechamento, muros de divisa, protendidos, escadas e muito mais",
     },
     {
       icon: HardHat,
       title: "Estruturas metálicas fabricadas",
-      description: "Escadas, tesouras, terças protendidas com qualidade superior",
+      description: "Estrutura de cobertura e fechamento, pilares entre outros",
     },
   ];
 
@@ -239,8 +239,8 @@ const Home = () => {
                   <li className="flex items-start">
                     <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-0.5" />
                     <div>
-                      <strong className="text-foreground">Estoque próprio disponível</strong>
-                      <p className="text-muted-foreground text-sm">Peças prontas para entrega imediata quando necessário</p>
+                      <strong className="text-foreground">Capacidade produtiva imediata</strong>
+                      <p className="text-muted-foreground text-sm">Prontos para iniciar a fabricação de acordo com as necessidades de cada projeto.</p>
                     </div>
                   </li>
                 </ul>
@@ -371,7 +371,7 @@ const Home = () => {
                 Engenharia que Você Pode Confiar
               </h2>
               <p className="text-xl text-muted-foreground leading-relaxed">
-                Fundada em 2022, a M3 Engenharia nasceu com o propósito de oferecer tranquilidade total aos clientes. Nosso foco está em obras industriais e estruturas pré-moldadas, com agilidade, segurança e qualidade. Já conquistamos 10 obras consecutivas com o mesmo cliente, prova da nossa dedicação e excelência.
+                Fundada em 2022, a M3 Engenharia nasceu com o propósito de oferecer tranquilidade total aos clientes. Nosso foco está em obras industriais e estruturas pré-moldadas, com agilidade, segurança e qualidade. Já conquistamos mais de 10 obras consecutivas com o mesmo cliente, prova da nossa dedicação e excelência.
               </p>
             </div>
             
@@ -402,7 +402,7 @@ const Home = () => {
               
               <Card className="border-border text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-8">
-                  <div className="text-6xl font-bold text-primary mb-3">50+</div>
+                  <div className="text-6xl font-bold text-primary mb-3">20+</div>
                   <div className="text-lg font-semibold text-foreground mb-2">Clientes Atendidos</div>
                   <div className="text-sm text-muted-foreground">Satisfação garantida</div>
                 </CardContent>

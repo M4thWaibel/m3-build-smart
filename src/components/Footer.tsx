@@ -88,20 +88,20 @@ const Footer = () => {
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-secondary">
-                  Rua Exemplo, 123<br />
-                  São Paulo - SP
+                  Rod. Marechal Rondon (Br-273), km179<br />
+                  Laranjal Paulista - SP
                 </span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-secondary" />
-                <a href="tel:+5511999999999" className="text-sm text-secondary hover:text-primary transition-colors">
-                  (11) 99999-9999
+                <a href="tel:+5515992635050" className="text-sm text-secondary hover:text-primary transition-colors">
+                  (15) 99263-5050
                 </a>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="w-5 h-5 text-secondary" />
-                <a href="mailto:contato@m3engenharia.com.br" className="text-sm text-secondary hover:text-primary transition-colors">
-                  contato@m3engenharia.com.br
+                <a href="mailto:comercial@m3constru.com.br" className="text-sm text-secondary hover:text-primary transition-colors">
+                  comercial@m3constru.com.br
                 </a>
               </li>
             </ul>

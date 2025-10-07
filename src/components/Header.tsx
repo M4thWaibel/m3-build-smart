@@ -20,13 +20,11 @@ const Header = () => {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <a href="#hero" className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-2xl font-bold text-primary-foreground">M3</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-lg font-bold text-foreground leading-tight">M3 Engenharia</span>
-              <span className="text-xs text-muted-foreground">& Construções</span>
-            </div>
+            <img
+              src="/assets/logo.jpg"
+              alt="Logo M3 Engenharia e Construções"
+              className="w-24 h-auto object-contain rounded-lg"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -45,13 +43,13 @@ const Header = () => {
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex flex-col items-end mr-4">
-              <a href="tel:+5511999999999" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
+              <a href="tel:+5515992635050" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
                 <Phone className="w-3 h-3 mr-1" />
-                (11) 99999-9999
+                (15) 99263-5050
               </a>
-              <a href="mailto:contato@m3engenharia.com.br" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto:comercial@m3constru.com.br" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-3 h-3 mr-1" />
-                contato@m3engenharia.com.br
+                comercial@m3constru.com.br
               </a>
             </div>
             <Button asChild variant="default" className="bg-primary hover:bg-primary/90 text-primary-foreground">

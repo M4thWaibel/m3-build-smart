@@ -43,10 +43,9 @@ const Header = () => {
           {/* Contact Info & CTA */}
           <div className="hidden lg:flex items-center space-x-4">
             <div className="flex flex-col items-end mr-4">
-              <a href="https://api.whatsapp.com/send/?phone=5515992635050&text&type=phone_number&app_absent=0" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
-                <Phone className="w-3 h-3 mr-1" />
-                (15) 99263-5050
-              </a>
+              <a href="https://api.whatsapp.com/send/?phone=5515992635050&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="text-sm text-secondary hover:text-primary transition-colors">
+                  (15) 99263-5050
+                </a>
               <a href="mailto:comercial@m3constru.com.br" className="flex items-center text-xs text-muted-foreground hover:text-primary transition-colors">
                 <Mail className="w-3 h-3 mr-1" />
                 comercial@m3constru.com.br

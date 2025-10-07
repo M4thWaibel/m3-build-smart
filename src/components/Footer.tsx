@@ -94,7 +94,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-5 h-5 text-secondary" />
-                <a href="https://api.whatsapp.com/send/?phone=5515992635050&text&type=phone_number&app_absent=0" className="text-sm text-secondary hover:text-primary transition-colors">
+                <a href="https://api.whatsapp.com/send/?phone=5515992635050&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="text-sm text-secondary hover:text-primary transition-colors">
                   (15) 99263-5050
                 </a>
               </li>

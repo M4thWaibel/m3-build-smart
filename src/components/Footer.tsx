@@ -20,13 +20,13 @@ const Footer = () => {
               Soluções em construções industriais com fabricação própria e entrega garantida no prazo.
             </p>
             <div className="flex space-x-4">
-              <a href="https://www.facebook.com/people/M3-Engenharia-e-Constru%C3%A7%C3%B5es/61568956907966/" className="text-secondary hover:text-primary transition-colors">
+              <a href="https://www.facebook.com/people/M3-Engenharia-e-Constru%C3%A7%C3%B5es/61568956907966/" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="https://www.instagram.com/m3construc/" className="text-secondary hover:text-primary transition-colors">
+              <a href="https://www.instagram.com/m3construc/" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://www.linkedin.com/company/m3-engenharia-e-contru%C3%A7%C3%B5es/?viewAsMember=true" className="text-secondary hover:text-primary transition-colors">
+              <a href="https://www.linkedin.com/company/m3-engenharia-e-contru%C3%A7%C3%B5es/?viewAsMember=true" target="_blank" rel="noopener noreferrer" className="text-secondary hover:text-primary transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>

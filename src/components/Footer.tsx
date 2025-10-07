@@ -3,22 +3,22 @@ import logo from "../assets/logo.jpg"
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground text-background">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center space-x-3 mb-4">
-            <img
-              src={logo}
-              alt="Logo M3 Engenharia e Construções"
-              className="w-24 h-auto object-contain rounded-lg"
-            />
-            </div>
-            <p className="text-sm text-secondary mb-4">
-              Soluções em construções industriais com fabricação própria e entrega garantida no prazo.
-            </p>
-            <div className="flex space-x-4">
+<footer className="bg-black text-white">
+  <div className="container mx-auto px-4 py-10">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-x-10 gap-y-8 items-start">
+      {/* Coluna 1: logo + descrição */}
+      <div className="space-y-4">
+        <div className="flex items-start space-x-3">
+          <img
+            src={logo}
+            alt="Logo M3"
+            className="h-10 w-auto block object-contain shrink-0"
+          />
+        </div>
+        <p className="text-sm text-muted-foreground max-w-xs">
+          Soluções em construções industriais com fabricação própria e entrega garantida no prazo.
+        </p>
+        <div className="flex space-x-4">
               <a
                 href="https://www.facebook.com/people/M3-Engenharia-e-Constru%C3%A7%C3%B5es/61568956907966/"
                 target="_blank"
@@ -46,10 +46,12 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
+      </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-background mb-4">Links Rápidos</h3>
+      {/* Coluna 2: links rápidos */}
+      <nav className="space-y-2">
+        <h4 className="font-semibold">Links Rápidos</h4>
+        <div>
             <ul className="space-y-2">
               <li>
                 <a href="#hero" className="text-sm text-secondary hover:text-primary transition-colors">
@@ -73,10 +75,12 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+      </nav>
 
-          {/* Services */}
-          <div>
-            <h3 className="font-semibold text-background mb-4">Serviços</h3>
+      {/* Coluna 3: serviços */}
+      <nav className="space-y-2">
+        <h4 className="font-semibold">Serviços</h4>
+        <div>
             <ul className="space-y-2">
               <li>
                 <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
@@ -95,11 +99,12 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+      </nav>
 
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold text-background mb-4">Contato</h3>
-            <ul className="space-y-3">
+      {/* Coluna 4: contato */}
+      <div className="space-y-2">
+        <h4 className="font-semibold">Contato</h4>
+        <ul className="space-y-3">
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-secondary">
@@ -120,17 +125,17 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-          </div>
-        </div>
+      </div>
+    </div>
 
-        <div className="border-t border-secondary/20 mt-8 pt-8 text-center">
-          <p className="text-sm text-secondary">
-            © {new Date().getFullYear()} M3 Engenharia e Construções. Todos os direitos reservados.
-          </p>
-        </div>
-        </div>
-        </div>
-    </footer>
+    {/* linha de copyright */}
+    <hr className="border-border my-8" />
+    <p className="text-center text-sm text-muted-foreground">
+      © 2025 M3 Engenharia e Construções. Todos os direitos reservados.
+    </p>
+  </div>
+</footer>
+
   );
 };
 

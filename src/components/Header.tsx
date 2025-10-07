@@ -21,7 +21,7 @@ const Header = () => {
           {/* Logo */}
           <a href="#hero" className="flex items-center space-x-3">
             <img
-              src="/assets/logo.png"
+              src="/assets/logo.svg"
               alt="Logo M3 Engenharia e Construções"
               className="w-24 h-auto object-contain rounded-lg"
             />

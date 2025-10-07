@@ -14,7 +14,7 @@ import {
   ChevronRight,
   CheckCircle2
 } from "lucide-react";
-import heroImage from "@/assets/hero-industrial.jpg";
+import heroImage from "../assets/hero-industrial.png";
 import fabricacaoImage from "@/assets/fabricacao-propria.jpg";
 import projeto1 from "@/assets/projeto-1.jpg";
 import projeto2 from "@/assets/projeto-2.jpg";
@@ -66,29 +66,30 @@ const Home = () => {
   const projects = [
     { 
       image: projeto1, 
-      title: "Galpão Industrial Alimentício",
-      description: "Estrutura completa em pré-moldado para linha de produção alimentícia",
+      title: "Galpão Fabril",
+      description: "Com estrutura em concreto pré-moldado e metálica, projetado para unir eficiência, resistência e funcionalidade.",
       year: "2024",
-      location: "São Paulo, SP",
-      area: "2.500 m² construídos",
-      client: "Indústria de Alimentos ABC"
+      location: "Boituva, SP",
+      area: "4.360 m²",
+      client: "Vão Livre 38m"
     },
     { 
       image: projeto2, 
-      title: "Centro de Distribuição Logístico",
-      description: "Galpão logístico com estrutura metálica e pré-moldados",
-      year: "2023",
-      location: "Campinas, SP",
-      area: "3.200 m² construídos"
+      title: "Prédio Administrativo",
+      description: "Estrutura totalmente pré-moldada, utilizando lajes alveolares para maior eficiência e precisão construtiva.",
+      year: "2025",
+      location: "Boituva, SP",
+      area: "2.620 m² construídos",
+      client: "Altura 24,5 (6 andares)"
     },
     { 
       image: projeto3, 
-      title: "Complexo Industrial Químico",
-      description: "Estruturas especializadas para indústria química",
+      title: "Galpão Logístico",
+      description: "Com pilares pré-moldados e fechamento em alvenaria, projetado para oferecer amplitude, resistência e praticidade operacional.",
       year: "2023",
-      location: "Sorocaba, SP",
-      area: "1.800 m² construídos",
-      client: "Química Industrial XYZ"
+      location: "Cerquilho, SP",
+      area: "3.420 m² construídos",
+      client: "Vão Livre de 30m"
     },
   ];
 

@@ -129,7 +129,8 @@ const Footer = () => {
             © {new Date().getFullYear()} M3 Engenharia e Construções. Todos os direitos reservados.
           </p>
         </div>
-      </div>
+        </div>
+        </div>
     </footer>
   );
 };

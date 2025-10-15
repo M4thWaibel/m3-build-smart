@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import ProjectsCarousel from "@/components/ProjectsCarousel";
+import PartnersCarousel from "@/components/PartnersCarousel";
 import {
   Building2, 
   Factory, 
@@ -91,6 +93,44 @@ const Home = () => {
       area: "3.420 m² construídos",
       client: "Vão Livre de 30m"
     },
+    { 
+      image: projeto1, 
+      title: "Centro de Distribuição",
+      description: "Galpão logístico com estrutura metálica e pré-moldada, otimizado para operações de alta demanda.",
+      year: "2024",
+      location: "Sorocaba, SP",
+      area: "5.200 m²",
+      client: "Vão Livre 42m"
+    },
+    { 
+      image: projeto2, 
+      title: "Unidade Fabril",
+      description: "Complexo industrial completo com estruturas pré-moldadas e cobertura metálica de alto desempenho.",
+      year: "2023",
+      location: "Tatuí, SP",
+      area: "6.800 m² construídos",
+      client: "Pé-direito 12m"
+    },
+    { 
+      image: projeto3, 
+      title: "Armazém Industrial",
+      description: "Estrutura robusta em concreto pré-moldado, projetada para armazenamento de grande volume.",
+      year: "2024",
+      location: "Itu, SP",
+      area: "4.950 m² construídos",
+      client: "Vão Livre de 35m"
+    },
+  ];
+
+  const partners = [
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+1", alt: "Parceiro 1" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+2", alt: "Parceiro 2" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+3", alt: "Parceiro 3" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+4", alt: "Parceiro 4" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+5", alt: "Parceiro 5" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+6", alt: "Parceiro 6" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+7", alt: "Parceiro 7" },
+    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+8", alt: "Parceiro 8" },
   ];
 
   const differentials = [
@@ -265,47 +305,8 @@ const Home = () => {
                 Portfólio de Projetos Entregues
               </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {projects.map((project, index) => (
-                <Card key={index} className="border-border overflow-hidden hover:shadow-xl transition-shadow">
-                  <div className="relative">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-64 object-cover"
-                      loading="lazy"
-                    />
-                    <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-md font-bold">
-                      {project.year}
-                    </div>
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-3">{project.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-                    <div className="space-y-2 mb-4 text-sm">
-                      <div className="flex items-center text-muted-foreground">
-                        <span className="mr-2">📍</span>
-                        <span>{project.location}</span>
-                      </div>
-                      <div className="flex items-center text-muted-foreground">
-                        <span className="mr-2">📐</span>
-                        <span>{project.area}</span>
-                      </div>
-                      {project.client && (
-                        <div className="flex items-center text-muted-foreground">
-                          <span className="mr-2">🏢</span>
-                          <span>{project.client}</span>
-                        </div>
-                      )}
-                    </div>
-                    {/*  
-                    <Button variant="outline" className="w-full" asChild>
-                      <a href="#">Ver Detalhes do Projeto</a>
-                    </Button>
-                    */}
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="mb-12">
+              <ProjectsCarousel projects={projects} />
             </div>
             <div className="text-center">
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
@@ -361,6 +362,21 @@ const Home = () => {
                 <ChevronRight className="ml-2 w-5 h-5" />
               </a>
             </Button>
+          </div>
+        </section>
+
+        {/* Seção 07.5 - Parceiros */}
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-foreground mb-4">
+                Nossos Parceiros
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Empresas que confiam em nossas soluções
+              </p>
+            </div>
+            <PartnersCarousel partners={partners} />
           </div>
         </section>
 

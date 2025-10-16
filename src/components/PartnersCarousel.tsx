@@ -22,7 +22,7 @@ const PartnersCarousel = ({ partners }: PartnersCarouselProps) => {
   const autoplayRef = useRef(
     Autoplay({
       delay: 3000,
-      stopOnInteraction: true,
+      stopOnInteraction: false,
       stopOnMouseEnter: true,
       playOnInit: true,
     })

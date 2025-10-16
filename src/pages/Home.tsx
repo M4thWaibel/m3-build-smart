@@ -73,7 +73,8 @@ const Home = () => {
       year: "2024",
       location: "Boituva, SP",
       area: "4.360 m²",
-      client: "Vão Livre 38m"
+      client: "Vão Livre 38m",
+      status: "concluido" as const
     },
     { 
       image: projeto2, 
@@ -82,7 +83,8 @@ const Home = () => {
       year: "2025",
       location: "Boituva, SP",
       area: "2.620 m² construídos",
-      client: "Altura 24,5 (6 andares)"
+      client: "Altura 24,5 (6 andares)",
+      status: "em_andamento" as const
     },
     { 
       image: projeto3, 
@@ -91,7 +93,8 @@ const Home = () => {
       year: "2023",
       location: "Cerquilho, SP",
       area: "3.420 m² construídos",
-      client: "Vão Livre de 30m"
+      client: "Vão Livre de 30m",
+      status: "concluido" as const
     },
     { 
       image: projeto1, 
@@ -100,7 +103,8 @@ const Home = () => {
       year: "2024",
       location: "Sorocaba, SP",
       area: "5.200 m²",
-      client: "Vão Livre 42m"
+      client: "Vão Livre 42m",
+      status: "concluido" as const
     },
     { 
       image: projeto2, 
@@ -109,7 +113,8 @@ const Home = () => {
       year: "2023",
       location: "Tatuí, SP",
       area: "6.800 m² construídos",
-      client: "Pé-direito 12m"
+      client: "Pé-direito 12m",
+      status: "concluido" as const
     },
     { 
       image: projeto3, 
@@ -118,7 +123,68 @@ const Home = () => {
       year: "2024",
       location: "Itu, SP",
       area: "4.950 m² construídos",
-      client: "Vão Livre de 35m"
+      client: "Vão Livre de 35m",
+      status: "concluido" as const
+    },
+    { 
+      image: projeto1, 
+      title: "Complexo Logístico",
+      description: "Estrutura moderna em pré-moldado, projetada para operações de alta eficiência e movimentação de cargas.",
+      year: "2024",
+      location: "Campinas, SP",
+      area: "7.100 m²",
+      client: "Vão Livre 45m",
+      status: "em_andamento" as const
+    },
+    { 
+      image: projeto2, 
+      title: "Galpão Industrial",
+      description: "Com estrutura metálica robusta e fechamento lateral, ideal para processos produtivos de grande escala.",
+      year: "2023",
+      location: "Indaiatuba, SP",
+      area: "3.850 m² construídos",
+      client: "Pé-direito 10m",
+      status: "concluido" as const
+    },
+    { 
+      image: projeto3, 
+      title: "Centro de Armazenagem",
+      description: "Estrutura pré-moldada com alta capacidade de estocagem, otimizada para logística e distribuição.",
+      year: "2024",
+      location: "Jundiaí, SP",
+      area: "5.600 m²",
+      client: "Vão Livre de 38m",
+      status: "em_andamento" as const
+    },
+    { 
+      image: projeto1, 
+      title: "Pavilhão Industrial",
+      description: "Cobertura metálica de grande vão livre e pilares em concreto, projetado para versatilidade operacional.",
+      year: "2023",
+      location: "Votorantim, SP",
+      area: "4.200 m² construídos",
+      client: "Vão Livre 40m",
+      status: "concluido" as const
+    },
+    { 
+      image: projeto2, 
+      title: "Unidade de Produção",
+      description: "Estrutura completa em pré-moldado, com área administrativa integrada e alta eficiência construtiva.",
+      year: "2024",
+      location: "Salto, SP",
+      area: "6.300 m²",
+      client: "Altura 18m (5 andares)",
+      status: "em_andamento" as const
+    },
+    { 
+      image: projeto3, 
+      title: "Galpão Multiuso",
+      description: "Estrutura versátil em concreto e aço, preparada para múltiplas configurações produtivas e logísticas.",
+      year: "2023",
+      location: "Porto Feliz, SP",
+      area: "4.750 m² construídos",
+      client: "Vão Livre de 32m",
+      status: "concluido" as const
     },
   ];
 
@@ -302,7 +368,7 @@ const Home = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
-                Portfólio de Projetos Entregues
+                Portifólio de Projetos
               </h2>
             </div>
             <div className="mb-12">

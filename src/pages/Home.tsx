@@ -18,10 +18,27 @@ import {
 } from "lucide-react";
 import heroImage from "../assets/hero-industrial.png";
 import fabricacaoImage from "@/assets/fabricacao-propria.jpg";
+import logo1 from "@/assets/Logo1.jpg";
+import logo2 from "@/assets/Logo2.jpg";
+import logo3 from "@/assets/Logo3.jpg";
+import logo4 from "@/assets/Logo4.jpg";
+import logo5 from "@/assets/Logo5.jpg";
+import logo6 from "@/assets/Logo6.jpg";
+import logo7 from "@/assets/Logo7.jpg";
+import logo8 from "@/assets/Logo8.jpg";
 import projeto1 from "@/assets/projeto-1.jpg";
 import projeto2 from "@/assets/projeto-2.jpg";
 import projeto3 from "@/assets/projeto-3.jpg";
-import equipeImage from "@/assets/equipe.jpg";
+import projeto4 from "@/assets/projeto-4.jpg";
+import projeto5 from "@/assets/projeto-5.jpg";
+import projeto6 from "@/assets/projeto-6.jpg";
+import projeto7 from "@/assets/projeto-7.jpg";
+import projeto8 from "@/assets/projeto-8.jpg";
+import projeto9 from "@/assets/projeto-9.jpg";
+import projeto10 from "@/assets/projeto-10.jpg";
+import projeto11 from "@/assets/projeto-11.jpg";
+import projeto12 from "@/assets/projeto-12.jpg";
+
 
 const Home = () => {
   const stats = [
@@ -84,7 +101,7 @@ const Home = () => {
       location: "Boituva, SP",
       area: "2.620 m² construídos",
       client: "Altura 24,5 (6 andares)",
-      status: "em_andamento" as const
+      status: "concluido" as const
     },
     { 
       image: projeto3, 
@@ -97,106 +114,106 @@ const Home = () => {
       status: "concluido" as const
     },
     { 
-      image: projeto1, 
-      title: "Centro de Distribuição",
-      description: "Galpão logístico com estrutura metálica e pré-moldada, otimizado para operações de alta demanda.",
-      year: "2024",
-      location: "Sorocaba, SP",
-      area: "5.200 m²",
-      client: "Vão Livre 42m",
-      status: "concluido" as const
-    },
-    { 
-      image: projeto2, 
-      title: "Unidade Fabril",
-      description: "Complexo industrial completo com estruturas pré-moldadas e cobertura metálica de alto desempenho.",
-      year: "2023",
-      location: "Tatuí, SP",
-      area: "6.800 m² construídos",
-      client: "Pé-direito 12m",
-      status: "concluido" as const
-    },
-    { 
-      image: projeto3, 
-      title: "Armazém Industrial",
-      description: "Estrutura robusta em concreto pré-moldado, projetada para armazenamento de grande volume.",
-      year: "2024",
-      location: "Itu, SP",
-      area: "4.950 m² construídos",
-      client: "Vão Livre de 35m",
-      status: "concluido" as const
-    },
-    { 
-      image: projeto1, 
-      title: "Complexo Logístico",
-      description: "Estrutura moderna em pré-moldado, projetada para operações de alta eficiência e movimentação de cargas.",
-      year: "2024",
-      location: "Campinas, SP",
-      area: "7.100 m²",
-      client: "Vão Livre 45m",
-      status: "em_andamento" as const
-    },
-    { 
-      image: projeto2, 
+      image: projeto4, 
       title: "Galpão Industrial",
-      description: "Com estrutura metálica robusta e fechamento lateral, ideal para processos produtivos de grande escala.",
-      year: "2023",
-      location: "Indaiatuba, SP",
-      area: "3.850 m² construídos",
-      client: "Pé-direito 10m",
+      description: "Com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, proporcionando amplo vão livre e excelente aproveitamento interno.",
+      year: "2024",
+      location: "Boituva, SP",
+      area: "2.600 m²",
+      client: "Vão Livre 22m",
       status: "concluido" as const
     },
     { 
-      image: projeto3, 
-      title: "Centro de Armazenagem",
-      description: "Estrutura pré-moldada com alta capacidade de estocagem, otimizada para logística e distribuição.",
-      year: "2024",
-      location: "Jundiaí, SP",
-      area: "5.600 m²",
-      client: "Vão Livre de 38m",
+      image: projeto9, 
+      title: "Galpão Industrial",
+      description: "Galpão com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, projetado para oferecer amplo resistência e eficiência construtiva.",
+      year: "2025",
+      location: "Piracicaba, SP",
+      area: "7.200 m²",
+      client: "60 x 120m",
       status: "em_andamento" as const
     },
     { 
-      image: projeto1, 
-      title: "Pavilhão Industrial",
-      description: "Cobertura metálica de grande vão livre e pilares em concreto, projetado para versatilidade operacional.",
-      year: "2023",
-      location: "Votorantim, SP",
-      area: "4.200 m² construídos",
-      client: "Vão Livre 40m",
+      image: projeto5, 
+      title: "Galpões Industriais",
+      description: "Conjunto de quatro galpões com pilares pré-moldados e estrutura metálica de cobertura, desenvolvidos para garantir amplitude, durabilidade e eficiência nas operações.",
+      year: "2024",
+      location: "Boituva, SP",
+      area: "4.000 m²",
+      client: "Vão Livre 30m",
       status: "concluido" as const
     },
     { 
-      image: projeto2, 
-      title: "Unidade de Produção",
-      description: "Estrutura completa em pré-moldado, com área administrativa integrada e alta eficiência construtiva.",
+      image: projeto7, 
+      title: "Galpão de Lona",
+      description: "Com estrutura metálica galvanizada e cobertura em lona, projetado para proporcionar leveza, praticidade e resistência às intempéries.",
+      year: "2023",
+      location: "Cerquilho, SP",
+      area: "1.500 m²",
+      client: "Vão Livre 20m",
+      status: "concluido" as const
+    },
+    { 
+      image: projeto8, 
+      title: "Galpões para Estoque",
+      description: "Com estrutura em concreto pré-moldado, vigas de cobertura protendidas e painéis de fechamento, projetados para garantir robustez, durabilidade e amplo espaço interno.",
       year: "2024",
-      location: "Salto, SP",
-      area: "6.300 m²",
-      client: "Altura 18m (5 andares)",
+      location: "Saltinho, SP",
+      area: "2.100 m²",
+      client: "Vão livre 27m",
+      status: "concluido" as const
+    },
+    { 
+      image: projeto11, 
+      title: "Complexo Industrial",
+      description: "Diversos galpões em estrutura pré-moldada, projetado para oferecer robustez, eficiência e flexibilidade às operações industriais.",
+      year: "2025",
+      location: "Saltinho, SP",
+      area: "+ 40 mil m² de terreno",
+      client: "-",
       status: "em_andamento" as const
     },
     { 
-      image: projeto3, 
-      title: "Galpão Multiuso",
-      description: "Estrutura versátil em concreto e aço, preparada para múltiplas configurações produtivas e logísticas.",
+      image: projeto10, 
+      title: "Galpão para Estoque",
+      description: "Com fundações, muro de arrimo de 4 m, pilares pré-moldados e painéis de fechamento, garantindo segurança estrutural e ótimo aproveitamento interno.",
       year: "2023",
-      location: "Porto Feliz, SP",
-      area: "4.750 m² construídos",
-      client: "Vão Livre de 32m",
+      location: "Piracicaba, SP",
+      area: "870 m²",
+      client: "Pé-direito 8m",
       status: "concluido" as const
+    },
+    { 
+      image: projeto6, 
+      title: "Fundação e Pilares",
+      description: "Execução de fundações e pilares pré-moldados projetada para oferecer amplo vão livre e excelente desempenho estrutural.",
+      year: "2024",
+      location: "Piracicaba, SP",
+      area: "9.650 m² construídos",
+      client: "Vão Livre de 24m",
+      status: "concluido" as const
+    },
+    { 
+      image: projeto12, 
+      title: "Complexo Industrial",
+      description: "Diversos galpões, incluindo áreas industriais, refeitório e vestiários, projetado para garantir funcionalidade, conforto e eficiência operacional.",
+      year: "2025",
+      location: "Piracicaba, SP",
+      area: "48 mil m²",
+      client: "-",
+      status: "em_andamento" as const
     },
   ];
 
   const partners = [
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+1", alt: "Parceiro 1" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+2", alt: "Parceiro 2" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+3", alt: "Parceiro 3" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+4", alt: "Parceiro 4" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+5", alt: "Parceiro 5" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+6", alt: "Parceiro 6" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+7", alt: "Parceiro 7" },
-    { src: "https://via.placeholder.com/150x60/1a365d/ffffff?text=Parceiro+8", alt: "Parceiro 8" },
+    { src: logo1, alt: "Parceiro 1" },
+    { src: logo2, alt: "Parceiro 2" },
+    { src: logo3, alt: "Parceiro 3" },
+    { src: logo4, alt: "Parceiro 4" },
+    { src: logo5, alt: "Parceiro 5" },
+    { src: logo6, alt: "Parceiro 6" },
+    { src: logo7, alt: "Parceiro 7" },
+    { src: logo8, alt: "Parceiro 8" },
   ];
 
   const differentials = [

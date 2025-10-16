@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -17,12 +19,30 @@ interface PartnersCarouselProps {
 }
 
 const PartnersCarousel = ({ partners }: PartnersCarouselProps) => {
+  const autoplayRef = useRef(
+    Autoplay({
+      delay: 3000,
+      stopOnInteraction: true,
+      stopOnMouseEnter: true,
+      playOnInit: true,
+    })
+  );
+
+  useEffect(() => {
+    // Respeita prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion && autoplayRef.current) {
+      autoplayRef.current.stop();
+    }
+  }, []);
+
   return (
     <Carousel
       opts={{
         align: "start",
         loop: true,
       }}
+      plugins={[autoplayRef.current]}
       className="w-full"
     >
       <CarouselContent className="-ml-2 md:-ml-4">

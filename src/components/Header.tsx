@@ -1,10 +1,22 @@
 import { Button } from "./ui/button";
 import { Menu, X, Phone, Mail } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../assets/logo.jpg"
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigation = [
     { name: "Início", href: "#hero" },
@@ -16,7 +28,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background border-b border-border">
+    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-background border-b border-border' : 'bg-transparent border-b border-transparent'}`}>
       <div className="container mx-auto px-4">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}

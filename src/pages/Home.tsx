@@ -246,7 +246,7 @@ const Home = () => {
       
       <main className="flex-1">
         {/* Seção 01 - Hero */}
-        <section id="hero" className="relative min-h-[90vh] flex items-center">
+        <section id="hero" className="relative min-h-screen flex items-center pt-20">
           <div className="absolute inset-0 z-0">
             <img 
               src={heroImage} 

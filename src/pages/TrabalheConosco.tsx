@@ -1,8 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import CareerForm from "@/components/CareerForm";
 import { Card, CardContent } from "@/components/ui/card";
-import { Briefcase, TrendingUp, Users, Award, ChevronRight } from "lucide-react";
+import { Briefcase, TrendingUp, Users, Award } from "lucide-react";
 import equipeImage from "@/assets/equipe.jpg";
 
 const TrabalheConosco = () => {
@@ -24,7 +24,7 @@ const TrabalheConosco = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
@@ -38,15 +38,11 @@ const TrabalheConosco = () => {
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                   Faça parte de uma equipe comprometida com a excelência em construções industriais. Valorizamos profissionais dedicados e com vontade de crescer.
                 </p>
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Enviar currículo
-                  <ChevronRight className="ml-2 w-5 h-5" />
-                </Button>
               </div>
               <div>
-                <img 
-                  src={equipeImage} 
-                  alt="Equipe M3 Engenharia" 
+                <img
+                  src={equipeImage}
+                  alt="Equipe M3 Engenharia"
                   className="rounded-lg shadow-xl w-full"
                 />
               </div>
@@ -99,12 +95,8 @@ const TrabalheConosco = () => {
             </div>
             <div className="text-center mt-12">
               <p className="text-muted-foreground mb-4">
-                Não encontrou a vaga ideal? Envie seu currículo mesmo assim!
+                Não encontrou a vaga ideal? Envie seu currículo mesmo assim através do formulário abaixo!
               </p>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Cadastro espontâneo
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
             </div>
           </div>
         </section>
@@ -137,25 +129,19 @@ const TrabalheConosco = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold text-primary-foreground mb-6">
-              Pronto para fazer parte da nossa equipe?
-            </h2>
-            <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10">
-              Envie seu currículo e faça parte de uma empresa que valoriza profissionais dedicados
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
-                Enviar currículo por e-mail
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10">
-                Falar com RH
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </Button>
+        {/* Form Section */}
+        <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-foreground mb-4">
+                Pronto para fazer parte da nossa equipe?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Preencha o formulário abaixo com seus dados e anexe seu currículo. Nossa equipe de RH entrará em contato em breve!
+              </p>
             </div>
+
+            <CareerForm />
           </div>
         </section>
       </main>

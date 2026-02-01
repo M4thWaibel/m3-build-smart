@@ -57,6 +57,11 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+body {
+  scrollbar-gutter: stable;
 }
 
 section[id] {

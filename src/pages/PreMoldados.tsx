@@ -4,24 +4,45 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Hammer, CheckCircle2, ChevronRight } from "lucide-react";
 import fabricacaoImage from "@/assets/fabricacao-propria.jpg";
+import fabricacaoImage1 from "@/assets/fabricacao-propria1.jpg";
+import projeto6 from "@/assets/projeto-6.jpg";
 
 const PreMoldados = () => {
   const products = [
-    { name: "Pilares e Vigas", description: "Estruturas de sustentação com alta resistência" },
-    { name: "Vigas Calha", description: "Sistema integrado de drenagem e estrutura" },
-    { name: "Placas de Fechamento", description: "Fechamento lateral e divisórias" },
-    { name: "Escadas Pré-fabricadas", description: "Acesso entre níveis com segurança" },
-    { name: "Muros de Arrimo", description: "Contenção e segurança do terreno" },
-    { name: "Lajes Alveolares", description: "Lajes com excelente relação peso/resistência" },
+    { name: "Pilares e Vigas", description: "Estruturas de sustentação com alta resistência e precisão dimensional" },
+    { name: "Vigas Calha", description: "Sistema integrado de drenagem e estrutura para coberturas" },
+    { name: "Placas de Fechamento", description: "Fechamento lateral e divisórias com isolamento térmico" },
+    { name: "Escadas Pré-fabricadas", description: "Acesso seguro entre níveis com acabamento de qualidade" },
+    { name: "Muros de Arrimo", description: "Contenção de terrenos com máxima segurança estrutural" },
+    { name: "Lajes Alveolares", description: "Lajes com excelente relação peso/resistência para grandes vãos" },
+  ];
+
+  const advantages = [
+    {
+      title: "Controle de Qualidade Total",
+      description: "Cada peça passa por inspeção rigorosa antes da entrega, garantindo os mais altos padrões de qualidade."
+    },
+    {
+      title: "Prazos Reduzidos",
+      description: "Sem dependência de terceiros, garantimos entregas rápidas e cumprimento dos cronogramas."
+    },
+    {
+      title: "Melhor Custo-Benefício",
+      description: "Eliminação de intermediários resulta em preços competitivos sem comprometer a qualidade."
+    },
+    {
+      title: "Capacidade de 600m³/mês",
+      description: "Alta capacidade produtiva para atender projetos de qualquer porte com agilidade."
+    }
   ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-br from-primary/5 to-background">
+        <section className="relative py-24 bg-gradient-to-br from-primary/5 to-background pt-32">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -35,17 +56,17 @@ const PreMoldados = () => {
                   Elementos Pré-Moldados com Fabricação Própria
                 </h1>
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  Produção própria de estruturas pré-moldadas de concreto com controle rigoroso de qualidade e entrega garantida no prazo.
+                  Produção própria de estruturas pré-moldadas de concreto com controle rigoroso de qualidade e entrega garantida no prazo. Capacidade de 600m³ por mês.
                 </p>
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" id="cta-merlin12">
                   Solicite um orçamento
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
               </div>
               <div>
-                <img 
-                  src={fabricacaoImage} 
-                  alt="Fabricação de pré-moldados" 
+                <img
+                  src={fabricacaoImage}
+                  alt="Fabricação de pré-moldados"
                   className="rounded-lg shadow-2xl w-full"
                 />
               </div>
@@ -73,59 +94,91 @@ const PreMoldados = () => {
           </div>
         </section>
 
-        {/* Advantages Section */}
+        {/* Gallery Section */}
         <section className="py-20 bg-muted">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+              Nossa Estrutura de Fabricação
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <img
+                  src={fabricacaoImage1}
+                  alt="Área de fabricação"
+                  className="rounded-lg shadow-xl w-full h-64 object-cover"
+                />
+                <h3 className="text-lg font-semibold text-foreground">Área de Produção</h3>
+                <p className="text-muted-foreground">
+                  Fábrica equipada com tecnologia moderna para produção de pré-moldados com precisão e qualidade.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <img
+                  src={projeto6}
+                  alt="Pilares pré-moldados"
+                  className="rounded-lg shadow-xl w-full h-64 object-cover"
+                />
+                <h3 className="text-lg font-semibold text-foreground">Fundação e Pilares</h3>
+                <p className="text-muted-foreground">
+                  Execução de fundações e pilares pré-moldados projetados para oferecer amplo vão livre e excelente desempenho estrutural.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Advantages Section */}
+        <section className="py-20 bg-background">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
                 Vantagens da Fabricação Própria
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-6 h-6 text-primary" />
+                {advantages.map((item, index) => (
+                  <div key={index} className="flex items-start space-x-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
+                      <p className="text-muted-foreground">{item.description}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Controle de Qualidade Total</h3>
-                    <p className="text-muted-foreground">
-                      Cada peça passa por inspeção rigorosa antes da entrega, garantindo os mais altos padrões de qualidade.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Prazos Reduzidos</h3>
-                    <p className="text-muted-foreground">
-                      Sem dependência de terceiros, garantimos entregas rápidas e cumprimento dos cronogramas.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Melhor Custo-Benefício</h3>
-                    <p className="text-muted-foreground">
-                      Eliminação de intermediários resulta em preços competitivos sem comprometer a qualidade.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">Capacidade de 600m³/mês</h3>
-                    <p className="text-muted-foreground">
-                      Alta capacidade produtiva para atender projetos de qualquer porte com agilidade.
-                    </p>
-                  </div>
-                </div>
+                ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stats Section */}
+        <section className="py-20 bg-muted">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+              Capacidade de Produção
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              <Card className="border-border text-center">
+                <CardContent className="p-8">
+                  <div className="text-5xl font-bold text-primary mb-2">600 m³</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Por mês</div>
+                  <div className="text-sm text-muted-foreground">Capacidade produtiva</div>
+                </CardContent>
+              </Card>
+              <Card className="border-border text-center">
+                <CardContent className="p-8">
+                  <div className="text-5xl font-bold text-primary mb-2">100%</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Controle</div>
+                  <div className="text-sm text-muted-foreground">Qualidade garantida</div>
+                </CardContent>
+              </Card>
+              <Card className="border-border text-center">
+                <CardContent className="p-8">
+                  <div className="text-5xl font-bold text-primary mb-2">+20</div>
+                  <div className="text-lg font-semibold text-foreground mb-2">Anos</div>
+                  <div className="text-sm text-muted-foreground">Experiência</div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>
@@ -139,7 +192,7 @@ const PreMoldados = () => {
             <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10">
               Consulte nossa equipe e receba um orçamento detalhado para seu projeto
             </p>
-            <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+            <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" id="cta-merlin13">
               Solicite um orçamento
               <ChevronRight className="ml-2 w-5 h-5" />
             </Button>

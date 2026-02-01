@@ -1,24 +1,25 @@
 import { MapPin, Phone, Mail, Facebook, Instagram, Linkedin } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg"
 
 const Footer = () => {
   return (
-<footer className="bg-black text-white">
-  <div className="container mx-auto px-4 py-10">
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-x-10 gap-y-8 items-start">
-      {/* Coluna 1: logo + descrição */}
-      <div className="space-y-4">
-        <div className="flex items-start space-x-3">
-          <img
-            src={logo}
-            alt="Logo M3"
-            className="h-10 w-auto block object-contain shrink-0"
-          />
-        </div>
-        <p className="text-sm text-muted-foreground max-w-xs">
-          Soluções em construções industriais com fabricação própria e entrega garantida no prazo.
-        </p>
-        <div className="flex space-x-4">
+    <footer className="bg-black text-white">
+      <div className="container mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-8 items-start">
+          {/* Coluna 1: logo + descrição */}
+          <div className="space-y-4">
+            <div className="flex items-start space-x-3">
+              <img
+                src={logo}
+                alt="Logo M3"
+                className="h-10 w-auto block object-contain shrink-0"
+              />
+            </div>
+            <p className="text-sm text-muted-foreground max-w-xs">
+              Soluções em construções industriais com fabricação própria e entrega garantida no prazo.
+            </p>
+            <div className="flex space-x-4">
               <a
                 href="https://www.facebook.com/people/M3-Engenharia-e-Constru%C3%A7%C3%B5es/61568956907966/"
                 target="_blank"
@@ -38,7 +39,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://www.linkedin.com/company/m3-engenharia-e-constru%C3%A7%C3%B5es/?viewAsMember=true"
+                href="https://www.linkedin.com/company/m3-engenharia-e-contru%C3%A7%C3%B5es/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-secondary hover:text-primary transition-colors"
@@ -46,65 +47,89 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
-      </div>
-
-      {/* Coluna 2: links rápidos */}
-      <nav className="space-y-2">
-        <h4 className="font-semibold">Links Rápidos</h4>
-        <div>
-            <ul className="space-y-2">
-              <li>
-                <a href="#hero" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Início
-                </a>
-              </li>
-              <li>
-                <a href="#sobre" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Sobre Nós
-                </a>
-              </li>
-              <li>
-                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Serviços
-                </a>
-              </li>
-              <li>
-                <a href="#contato" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Contato
-                </a>
-              </li>
-            </ul>
           </div>
-      </nav>
 
-      {/* Coluna 3: serviços */}
-      <nav className="space-y-2">
-        <h4 className="font-semibold">Serviços</h4>
-        <div>
-            <ul className="space-y-2">
-              <li>
-                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Galpão Industrial
-                </a>
-              </li>
-              <li>
-                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Pré-Moldados
-                </a>
-              </li>
-              <li>
-                <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
-                  Estruturas Metálicas
-                </a>
-              </li>
-            </ul>
-          </div>
-      </nav>
+          {/* Coluna 2: links rápidos */}
+          <nav className="space-y-2">
+            <h4 className="font-semibold">Links Rápidos</h4>
+            <div>
+              <ul className="space-y-2">
+                <li>
+                  <a href="#hero" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Início
+                  </a>
+                </li>
+                <li>
+                  <a href="#sobre" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Sobre Nós
+                  </a>
+                </li>
+                <li>
+                  <a href="#servicos" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Serviços
+                  </a>
+                </li>
+                <li>
+                  <a href="#contato" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Contato
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
 
-      {/* Coluna 4: contato */}
-      <div className="space-y-2">
-        <h4 className="font-semibold">Contato</h4>
-        <ul className="space-y-3">
+          {/* Coluna 3: serviços */}
+          <nav className="space-y-2">
+            <h4 className="font-semibold">Serviços</h4>
+            <div>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/galpoes-industriais" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Galpão Industrial
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/pre-moldados" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Pré-Moldados
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/estruturas-metalicas" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Estruturas Metálicas
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/construcoes-industriais" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Construções Industriais
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          {/* Coluna 4: outros */}
+          <nav className="space-y-2">
+            <h4 className="font-semibold">Outros</h4>
+            <div>
+              <ul className="space-y-2">
+                <li>
+                  <Link to="/trabalhe-conosco" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Trabalhe Conosco
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/seja-fornecedor" className="text-sm text-secondary hover:text-primary transition-colors">
+                    Seja um Fornecedor
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+
+          {/* Coluna 5: contato */}
+          <div className="space-y-2">
+            <h4 className="font-semibold">Contato</h4>
+            <ul className="space-y-3">
               <li className="flex items-start space-x-2">
                 <MapPin className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-secondary">
@@ -125,16 +150,16 @@ const Footer = () => {
                 </a>
               </li>
             </ul>
-      </div>
-    </div>
+          </div>
+        </div>
 
-    {/* linha de copyright */}
-    <hr className="border-border my-8" />
-    <p className="text-center text-sm text-muted-foreground">
-      © 2025 M3 Engenharia e Construções. Todos os direitos reservados.
-    </p>
-  </div>
-</footer>
+        {/* linha de copyright */}
+        <hr className="border-border my-8" />
+        <p className="text-center text-sm text-muted-foreground">
+          © 2025 M3 Engenharia e Construções. Todos os direitos reservados.
+        </p>
+      </div>
+    </footer>
 
   );
 };

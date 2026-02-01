@@ -2,8 +2,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Building2, CheckCircle2, ChevronRight } from "lucide-react";
+import { Factory, CheckCircle2, ChevronRight } from "lucide-react";
 import projeto1 from "@/assets/projeto-1.jpg";
+import projeto4 from "@/assets/projeto-4.jpg";
+import projeto8 from "@/assets/projeto-8.jpg";
 
 const GalpaoIndustrial = () => {
   const benefits = [
@@ -15,18 +17,25 @@ const GalpaoIndustrial = () => {
     "Acompanhamento técnico em todas as etapas",
   ];
 
+  const types = [
+    { name: "Galpões Fabris", description: "Espaços otimizados para linhas de produção industrial" },
+    { name: "Galpões Logísticos", description: "Amplos vãos livres para armazenagem e movimentação" },
+    { name: "Galpões de Estoque", description: "Estruturas robustas para armazenamento seguro" },
+    { name: "Galpões Comerciais", description: "Soluções versáteis para comércio e serviços" },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative py-24 bg-gradient-to-br from-primary/5 to-background">
+        <section className="relative py-24 bg-gradient-to-br from-primary/5 to-background pt-32">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="flex items-center space-x-2 mb-4">
-                  <Building2 className="w-8 h-8 text-primary" />
+                  <Factory className="w-8 h-8 text-primary" />
                   <span className="text-sm font-semibold text-primary uppercase tracking-wide">
                     Galpões Industriais
                   </span>
@@ -37,17 +46,70 @@ const GalpaoIndustrial = () => {
                 <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
                   Projetos completos de galpões industriais e logísticos, desenvolvidos para atender as necessidades específicas da sua operação com eficiência e durabilidade.
                 </p>
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground" id="cta-merlin10">
                   Solicite um orçamento
                   <ChevronRight className="ml-2 w-5 h-5" />
                 </Button>
               </div>
               <div>
-                <img 
-                  src={projeto1} 
-                  alt="Galpão Industrial" 
+                <img
+                  src={projeto1}
+                  alt="Galpão Industrial"
                   className="rounded-lg shadow-2xl w-full"
                 />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Types Section */}
+        <section className="py-20 bg-background">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+              Tipos de Galpões que Construímos
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {types.map((type, index) => (
+                <Card key={index} className="border-border hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <CheckCircle2 className="w-10 h-10 text-primary mb-4" />
+                    <h3 className="text-xl font-semibold text-foreground mb-2">{type.name}</h3>
+                    <p className="text-muted-foreground">{type.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section className="py-20 bg-muted">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
+              Projetos Realizados
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <img
+                  src={projeto4}
+                  alt="Galpão Industrial Boituva"
+                  className="rounded-lg shadow-xl w-full h-64 object-cover"
+                />
+                <h3 className="text-lg font-semibold text-foreground">Galpão Industrial - Boituva, SP</h3>
+                <p className="text-muted-foreground">
+                  Com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura. Área de 2.600 m² com vão livre de 22m.
+                </p>
+              </div>
+              <div className="space-y-4">
+                <img
+                  src={projeto8}
+                  alt="Galpões para Estoque"
+                  className="rounded-lg shadow-xl w-full h-64 object-cover"
+                />
+                <h3 className="text-lg font-semibold text-foreground">Galpões para Estoque - Saltinho, SP</h3>
+                <p className="text-muted-foreground">
+                  Estrutura em concreto pré-moldado, vigas protendidas e painéis de fechamento. Área de 2.100 m² com vão livre de 27m.
+                </p>
               </div>
             </div>
           </div>
@@ -119,7 +181,7 @@ const GalpaoIndustrial = () => {
             <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10">
               Entre em contato conosco e receba um orçamento personalizado em até 24 horas
             </p>
-            <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+            <Button size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90" id="cta-merlin11">
               Solicite um orçamento
               <ChevronRight className="ml-2 w-5 h-5" />
             </Button>

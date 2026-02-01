@@ -4,14 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import ProjectsCarousel from "@/components/ProjectsCarousel";
 import PartnersCarousel from "@/components/PartnersCarousel";
+import { Link } from "react-router-dom";
 import {
-  Building2, 
-  Factory, 
-  Hammer, 
-  HardHat, 
-  Shield, 
-  Clock, 
-  Users, 
+  Building2,
+  Factory,
+  Hammer,
+  HardHat,
+  Shield,
+  Clock,
+  Users,
   FileCheck,
   ChevronRight,
   CheckCircle2
@@ -64,144 +65,160 @@ const Home = () => {
       icon: Building2,
       title: "Construções industriais em geral",
       description: "Fundação, alvenaria estrutural e galpões completos para sua indústria",
+      path: "/construcoes-industriais"
     },
     {
       icon: Factory,
       title: "Galpões industriais e logísticos",
       description: "Projetos sob medida com eficiência e durabilidade garantida",
+      path: "/galpoes-industriais"
     },
     {
       icon: Hammer,
       title: "Pré-moldados fabricados",
       description: "Pilares, vigas, placas de fechamento, muros de divisa, protendidos, escadas e muito mais",
+      path: "/pre-moldados"
     },
     {
       icon: HardHat,
       title: "Estruturas metálicas fabricadas",
       description: "Estrutura de cobertura e fechamento, pilares entre outros",
+      path: "/estruturas-metalicas"
     },
   ];
 
   const projects = [
-    { 
-      image: projeto1, 
+    {
+      image: projeto1,
       title: "Galpão Fabril",
       description: "Com estrutura em concreto pré-moldado e metálica, projetado para unir eficiência, resistência e funcionalidade.",
       year: "2024",
       location: "Boituva, SP",
       area: "4.360 m²",
       client: "Vão Livre 38m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto1, projeto1, projeto1],
     },
-    { 
-      image: projeto2, 
+    {
+      image: projeto2,
       title: "Prédio Administrativo",
       description: "Estrutura totalmente pré-moldada, utilizando lajes alveolares para maior eficiência e precisão construtiva.",
       year: "2025",
       location: "Boituva, SP",
       area: "2.620 m² construídos",
       client: "Altura 24,5 (6 andares)",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto2, projeto2, projeto2],
     },
-    { 
-      image: projeto3, 
+    {
+      image: projeto3,
       title: "Galpão Logístico",
       description: "Com pilares pré-moldados e fechamento em alvenaria, projetado para oferecer amplitude, resistência e praticidade operacional.",
       year: "2023",
       location: "Cerquilho, SP",
       area: "3.420 m² construídos",
       client: "Vão Livre de 30m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto3, projeto3, projeto3],
     },
-    { 
-      image: projeto4, 
+    {
+      image: projeto4,
       title: "Galpão Industrial",
       description: "Com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, proporcionando amplo vão livre e excelente aproveitamento interno.",
       year: "2024",
       location: "Boituva, SP",
       area: "2.600 m²",
       client: "Vão Livre 22m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto4, projeto4, projeto4],
     },
-    { 
-      image: projeto9, 
+    {
+      image: projeto9,
       title: "Galpão Industrial",
       description: "Galpão com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, projetado para oferecer amplo resistência e eficiência construtiva.",
       year: "2025",
       location: "Piracicaba, SP",
       area: "7.200 m²",
       client: "60 x 120m",
-      status: "em_andamento" as const
+      status: "em_andamento" as const,
+      gallery: [projeto9, projeto9, projeto9],
     },
-    { 
-      image: projeto5, 
+    {
+      image: projeto5,
       title: "Galpões Industriais",
       description: "Conjunto de quatro galpões com pilares pré-moldados e estrutura metálica de cobertura, desenvolvidos para garantir amplitude, durabilidade e eficiência nas operações.",
       year: "2024",
       location: "Boituva, SP",
       area: "4.000 m²",
       client: "Vão Livre 30m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto5, projeto5, projeto5],
     },
-    { 
-      image: projeto7, 
+    {
+      image: projeto7,
       title: "Galpão de Lona",
       description: "Com estrutura metálica galvanizada e cobertura em lona, projetado para proporcionar leveza, praticidade e resistência às intempéries.",
       year: "2023",
       location: "Cerquilho, SP",
       area: "1.500 m²",
       client: "Vão Livre 20m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto7, projeto7, projeto7],
     },
-    { 
-      image: projeto8, 
+    {
+      image: projeto8,
       title: "Galpões para Estoque",
       description: "Com estrutura em concreto pré-moldado, vigas de cobertura protendidas e painéis de fechamento, projetados para garantir robustez, durabilidade e amplo espaço interno.",
       year: "2024",
       location: "Saltinho, SP",
       area: "2.100 m²",
       client: "Vão livre 27m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto8, projeto8, projeto8],
     },
-    { 
-      image: projeto11, 
+    {
+      image: projeto11,
       title: "Complexo Industrial",
       description: "Diversos galpões em estrutura pré-moldada, projetado para oferecer robustez, eficiência e flexibilidade às operações industriais.",
       year: "2025",
       location: "Saltinho, SP",
       area: "+ 40 mil m² de terreno",
       client: "-",
-      status: "em_andamento" as const
+      status: "em_andamento" as const,
+      gallery: [projeto11, projeto11, projeto11],
     },
-    { 
-      image: projeto10, 
+    {
+      image: projeto10,
       title: "Galpão para Estoque",
       description: "Com fundações, muro de arrimo de 4 m, pilares pré-moldados e painéis de fechamento, garantindo segurança estrutural e ótimo aproveitamento interno.",
       year: "2023",
       location: "Piracicaba, SP",
       area: "870 m²",
       client: "Pé-direito 8m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto10, projeto10, projeto10],
     },
-    { 
-      image: projeto6, 
+    {
+      image: projeto6,
       title: "Fundação e Pilares",
       description: "Execução de fundações e pilares pré-moldados projetada para oferecer amplo vão livre e excelente desempenho estrutural.",
       year: "2024",
       location: "Piracicaba, SP",
       area: "9.650 m² construídos",
       client: "Vão Livre de 24m",
-      status: "concluido" as const
+      status: "concluido" as const,
+      gallery: [projeto6, projeto6, projeto6],
     },
-    { 
-      image: projeto12, 
+    {
+      image: projeto12,
       title: "Complexo Industrial",
       description: "Diversos galpões, incluindo áreas industriais, refeitório e vestiários, projetado para garantir funcionalidade, conforto e eficiência operacional.",
       year: "2025",
       location: "Piracicaba, SP",
       area: "48 mil m²",
       client: "-",
-      status: "em_andamento" as const
+      status: "em_andamento" as const,
+      gallery: [projeto12, projeto12, projeto12],
     },
   ];
 
@@ -243,19 +260,19 @@ const Home = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Seção 01 - Hero */}
         <section id="hero" className="relative min-h-screen flex items-center pt-20">
           <div className="absolute inset-0 z-0">
-            <img 
-              src={heroImage} 
-              alt="Construção industrial" 
+            <img
+              src={heroImage}
+              alt="Construção industrial"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-transparent"></div>
           </div>
-          
+
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl">
               <p className="text-primary-foreground/90 text-sm font-medium mb-4">
@@ -311,15 +328,21 @@ const Home = () => {
               {services.map((service, index) => {
                 const Icon = service.icon;
                 return (
-                  <Card key={index} className="border-border hover:shadow-lg transition-all hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                        <Icon className="w-7 h-7 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{service.title}</h3>
-                      <p className="text-sm text-muted-foreground">{service.description}</p>
-                    </CardContent>
-                  </Card>
+                  <Link to={service.path} key={index} className="block transition-all hover:-translate-y-1">
+                    <Card className="border-border hover:shadow-lg h-full">
+                      <CardContent className="p-6 flex flex-col h-full">
+                        <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                          <Icon className="w-7 h-7 text-primary" />
+                        </div>
+                        <h3 className="text-lg font-semibold text-foreground mb-2">{service.title}</h3>
+                        <p className="text-sm text-muted-foreground mb-4 flex-1">{service.description}</p>
+                        <div className="flex items-center text-primary text-sm font-medium group">
+                          Saiba mais...
+                          <ChevronRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 );
               })}
             </div>
@@ -370,9 +393,9 @@ const Home = () => {
                 </ul>
               </div>
               <div className="relative">
-                <img 
-                  src={fabricacaoImage} 
-                  alt="Área de fabricação M3" 
+                <img
+                  src={fabricacaoImage}
+                  alt="Área de fabricação M3"
                   className="rounded-lg shadow-xl w-full"
                 />
               </div>
@@ -474,7 +497,7 @@ const Home = () => {
                 Fundada em 2022, a M3 Engenharia nasceu com o propósito de oferecer tranquilidade total aos clientes. Nosso foco está em obras industriais e estruturas pré-moldadas, com agilidade, segurança e qualidade. Já conquistamos mais de 10 obras consecutivas com o mesmo cliente, prova da nossa dedicação e excelência.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               <Card className="border-border text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-8">
@@ -483,7 +506,7 @@ const Home = () => {
                   <div className="text-sm text-muted-foreground">Empresa jovem e inovadora</div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-border text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-8">
                   <div className="text-6xl font-bold text-primary mb-3">20+</div>
@@ -491,7 +514,7 @@ const Home = () => {
                   <div className="text-sm text-muted-foreground">Da equipe técnica</div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-border text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-8">
                   <div className="text-6xl font-bold text-primary mb-3">100%</div>
@@ -499,7 +522,7 @@ const Home = () => {
                   <div className="text-sm text-muted-foreground">Histórico comprovado</div>
                 </CardContent>
               </Card>
-              
+
               <Card className="border-border text-center hover:shadow-lg transition-shadow">
                 <CardContent className="p-8">
                   <div className="text-6xl font-bold text-primary mb-3">20+</div>

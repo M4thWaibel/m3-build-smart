@@ -1,9 +1,8 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+import SupplierForm from "@/components/SupplierForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Handshake, CheckCircle2, FileText, TrendingUp } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
 
 const Fornecedores = () => {
   const requirements = [
@@ -25,7 +24,7 @@ const Fornecedores = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
@@ -116,29 +115,19 @@ const Fornecedores = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-24 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl font-bold text-primary-foreground mb-6">
-              Pronto para se tornar nosso parceiro?
-            </h2>
-            <p className="text-xl text-primary-foreground/90 max-w-2xl mx-auto mb-10">
-              Entre em contato conosco e apresente sua empresa. Estamos ansiosos para conhecer sua proposta.
-            </p>
-            <Button 
-              asChild
-              size="lg" 
-              className="bg-[#25D366] hover:bg-[#20BA5A] text-white text-lg px-8 shadow-lg"
-            >
-              <a 
-                href="https://wa.me/5515996697107?text=Olá%20M3!%20Gostaria%20de%20me%20cadastrar%20como%20fornecedor."
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaWhatsapp className="mr-2 w-6 h-6" />
-                Falar pelo WhatsApp
-              </a>
-            </Button>
+        {/* Form Section */}
+        <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-foreground mb-4">
+                Pronto para se tornar nosso parceiro?
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Preencha o formulário abaixo e nossa equipe entrará em contato em breve para avaliar sua proposta.
+              </p>
+            </div>
+
+            <SupplierForm />
           </div>
         </section>
       </main>

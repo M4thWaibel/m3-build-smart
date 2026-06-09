@@ -1,145 +1,122 @@
-# 📸 Guia: Como Adicionar Novas Imagens aos Projetos
+# 📸 Guia: Como Adicionar / Trocar Imagens dos Projetos
 
-> **⚠️ IMPORTANTE:** Este arquivo é apenas para referência interna e **NÃO deve ser commitado** no repositório GitHub.
+> **⚠️ IMPORTANTE:** Este arquivo é apenas para referência interna.
 
 ---
 
 ## 📋 Índice
 
 1. [Visão Geral](#visão-geral)
-2. [Passo a Passo](#passo-a-passo)
-3. [Exemplo Prático Completo](#exemplo-prático-completo)
-4. [Dicas e Boas Práticas](#dicas-e-boas-práticas)
-5. [Troubleshooting](#troubleshooting)
+2. [Como Funciona Agora](#como-funciona-agora)
+3. [Passo a Passo](#passo-a-passo)
+4. [Mapa de Pastas → Projetos](#mapa-de-pastas--projetos)
+5. [Dicas e Boas Práticas](#dicas-e-boas-práticas)
+6. [Troubleshooting](#troubleshooting)
 
 ---
 
 ## Visão Geral
 
-Cada projeto no portfolio possui uma **galeria de imagens** que é exibida no modal quando o usuário clica no card do projeto. Esta galeria permite visualizar de **3 a 10 imagens** de cada obra.
+Cada projeto no portfólio possui uma **galeria de imagens** exibida no modal quando o usuário clica no card. A **primeira imagem** da galeria também é usada como capa do card.
 
-### Estrutura Atual
+As imagens ficam organizadas em **pastas dentro de `src/assets/`**, uma pasta por projeto.
 
-- **Imagem Principal** (`image`): Exibida no card
-- **Galeria** (`gallery`): Array de imagens exibidas no modal
-- **Localização**: `src/pages/Home.tsx`
+---
+
+## Como Funciona Agora
+
+> ✅ **Não é mais preciso editar imports nem o array de projetos para trocar fotos.**
+
+O arquivo [`src/pages/Home.tsx`](src/pages/Home.tsx) carrega **automaticamente** todas as imagens de cada pasta de projeto usando `import.meta.glob` do Vite:
+
+```typescript
+const galleryFiles = import.meta.glob(
+  "../assets/Projeto*/*.{jpg,JPG,jpeg,JPEG,png,PNG}",
+  { eager: true, query: "?url", import: "default" }
+);
+```
+
+Regras automáticas:
+
+- ✅ Toda imagem `.jpg`, `.jpeg` ou `.png` (maiúsculas ou minúsculas) dentro de uma pasta `Projeto N ...` entra na galeria daquele projeto.
+- ✅ A **ordem** segue o nome do arquivo (ordem numérica natural: `1.1`, `1.2`, `1.3`...).
+- ✅ A **primeira** imagem da galeria vira a capa do card.
+- 🚫 Arquivos `.txt` são ignorados.
+- 🚫 Arquivos `.DNG` (RAW) são ignorados — **o navegador não exibe esse formato**. Converta para `.jpg` antes de usar.
+
+Cada projeto no array é ligado à sua pasta por um **token** (o número da pasta), por exemplo:
+
+```typescript
+const galleries = {
+  galpaoFabril: getGallery("/Projeto 1 "),
+  predioAdministrativo: getGallery("/Projeto 4 "),
+  // ...
+};
+```
 
 ---
 
 ## Passo a Passo
 
-### 1️⃣ Preparar as Imagens
+### Para TROCAR ou ADICIONAR fotos de um projeto existente
 
-1. **Tire fotos do projeto** de diferentes ângulos
-2. **Renomeie os arquivos** seguindo o padrão:
+1. Abra a pasta do projeto em `src/assets/` (veja o [mapa abaixo](#mapa-de-pastas--projetos)).
+2. **Adicione, remova ou substitua** os arquivos de imagem (`.jpg`, `.jpeg`, `.png`).
+3. Para controlar a **ordem**, nomeie os arquivos numericamente. Ex.:
    ```
-   projeto-X-img1.jpg
-   projeto-X-img2.jpg
-   projeto-X-img3.jpg
+   Projeto 1.1.jpg   ← capa do card e 1ª do carrossel
+   Projeto 1.2.jpg
+   Projeto 1.3.jpg
    ```
-   Onde `X` é o número do projeto
+4. Pronto. Salve e rode o projeto — não precisa mexer no código.
 
-3. **Otimize as imagens** (recomendado):
-   - Formato: JPG ou WebP
-   - Tamanho ideal: 1920x1080px (Full HD)
-   - Qualidade: 80-85%
-   - Peso máximo: 500KB por imagem
+### Para CRIAR um novo projeto (projeto 13, 14...)
 
-### 2️⃣ Adicionar Imagens ao Projeto
-
-1. **Copie as imagens** para a pasta de assets:
-   ```
-   src/assets/
-   ```
-
-2. **Importe as imagens** no arquivo `Home.tsx`:
+1. Crie a pasta `src/assets/Projeto 13 Nome do Cliente/` e coloque as imagens dentro.
+2. Em [`src/pages/Home.tsx`](src/pages/Home.tsx), adicione a galeria ao objeto `galleries`:
    ```typescript
-   // No topo do arquivo, junto com os outros imports
-   import projeto13_img1 from "@/assets/projeto-13-img1.jpg";
-   import projeto13_img2 from "@/assets/projeto-13-img2.jpg";
-   import projeto13_img3 from "@/assets/projeto-13-img3.jpg";
+   const galleries = {
+     // ... existentes
+     meuNovoProjeto: getGallery("/Projeto 13 "),
+   };
+   ```
+3. Adicione o objeto do projeto ao array `projects`:
+   ```typescript
+   {
+     image: galleries.meuNovoProjeto[0],
+     title: "Novo Galpão",
+     description: "Descrição curta para o card...",
+     year: "2025",
+     location: "São Paulo, SP",
+     area: "5.000 m²",
+     client: "Vão Livre 40m",
+     status: "concluido" as const,
+     gallery: galleries.meuNovoProjeto,
+   },
    ```
 
-### 3️⃣ Atualizar o Array de Projetos
-
-Adicione a propriedade `gallery` ao projeto:
-
-```typescript
-const projects = [
-  // ... outros projetos
-  {
-    image: projeto13_img1, // Imagem principal
-    title: "Novo Galpão",
-    description: "Descrição curta para o card...",
-    year: "2025",
-    location: "São Paulo, SP",
-    area: "5.000 m²",
-    client: "Vão Livre 40m",
-    status: "concluido" as const,
-    
-    // ✅ ADICIONE ESTA LINHA com todas as imagens
-    gallery: [projeto13_img1, projeto13_img2, projeto13_img3],
-  },
-];
-```
+> 💡 O token (`"/Projeto 13 "`) precisa ter a **barra antes** e o **espaço depois** do número, para não confundir `Projeto 1` com `Projeto 10`/`11`/`12`.
 
 ---
 
-## Exemplo Prático Completo
+## Mapa de Pastas → Projetos
 
-### Cenário: Adicionar 5 imagens ao "Galpão Fabril" (projeto1)
+A numeração das pastas **não** segue a ordem de exibição no site. Mapeamento atual:
 
-#### **Etapa 1: Preparar arquivos**
-
-Arquivos de imagem:
-```
-src/assets/projeto-1-img1.jpg  (já existe)
-src/assets/projeto-1-img2.jpg  (nova)
-src/assets/projeto-1-img3.jpg  (nova)
-src/assets/projeto-1-img4.jpg  (nova)
-src/assets/projeto-1-img5.jpg  (nova)
-```
-
-#### **Etapa 2: Importar no Home.tsx**
-
-```typescript
-// No topo do arquivo (linha ~30)
-import projeto1_img1 from "@/assets/projeto-1.jpg";
-import projeto1_img2 from "@/assets/projeto-1-img2.jpg";
-import projeto1_img3 from "@/assets/projeto-1-img3.jpg";
-import projeto1_img4 from "@/assets/projeto-1-img4.jpg";
-import projeto1_img5 from "@/assets/projeto-1-img5.jpg";
-```
-
-#### **Etapa 3: Atualizar o array de projetos**
-
-```typescript
-const projects = [
-  {
-    image: projeto1_img1,
-    title: "Galpão Fabril",
-    description: "Com estrutura em concreto pré-moldado e metálica...",
-    year: "2024",
-    location: "Boituva, SP",
-    area: "4.360 m²",
-    client: "Vão Livre 38m",
-    status: "concluido" as const,
-    
-    // ✅ ANTES (demonstração):
-    // gallery: [projeto1, projeto1, projeto1],
-    
-    // ✅ DEPOIS (com imagens reais):
-    gallery: [
-      projeto1_img1,
-      projeto1_img2,
-      projeto1_img3,
-      projeto1_img4,
-      projeto1_img5
-    ],
-  },
-  // ... outros projetos
-];
-```
+| Pasta em `src/assets/`              | Projeto no site                       |
+|-------------------------------------|---------------------------------------|
+| `Projeto 1 Galpão Fabril - Arq`     | Galpão Fabril (Boituva)               |
+| `Projeto 2 Galpão Industrial - tras arq 6` | Galpão Industrial (Boituva, 22m) |
+| `Projeto 3 Galpão Logistico - J pilon` | Galpão Logístico (Cerquilho)       |
+| `Projeto 4 Predio adm - Arq 6`      | Prédio Administrativo (Boituva)       |
+| `Projeto 5 Arqplast`                | Galpões Industriais (Boituva)         |
+| `Projeto 6 Bola`                    | Fundação e Pilares (Piracicaba)       |
+| `Projeto 7 Cipatex lona`            | Galpão de Lona (Cerquilho)            |
+| `Projeto 8 Rinen`                   | Galpões para Estoque (Saltinho)       |
+| `Projeto 9 Unafe 2`                 | Galpão Industrial (Piracicaba)        |
+| `Projeto 10 Unafe 1`                | Galpão para Estoque (Piracicaba)      |
+| `Projeto 11 Vollmens`               | Complexo Industrial (Saltinho)        |
+| `Projeto 12 West`                   | Complexo Industrial (Piracicaba)      |
 
 ---
 
@@ -149,35 +126,24 @@ const projects = [
 
 - ✅ **Aspecto 16:9** (landscape) funciona melhor no modal
 - ✅ Use **mesma resolução** para todas as imagens de um projeto
-- ✅ Mantenha **consistência de qualidade** entre as fotos
+- ✅ Coloque a melhor foto como a **primeira** (será a capa do card)
 
-### 🎨 Ordem das Imagens
+### 🚀 Performance (IMPORTANTE)
 
-Organize a galeria de forma lógica:
-
-1. **Imagem 1**: Vista geral/fachada (a mesma do card)
-2. **Imagem 2**: Detalhe interno/estrutura
-3. **Imagem 3**: Outro ângulo importante
-4. **Imagens 4-10**: Detalhes adicionais
-
-### 🚀 Performance
-
-- Evite imagens muito grandes (>1MB)
-- Use ferramentas como [TinyPNG](https://tinypng.com/) para comprimir
-- Considere usar formato WebP para melhor compressão
+- ⚠️ Várias fotos atuais estão **muito pesadas** (algumas com 5–25 MB), o que deixa o site lento.
+- ✅ Redimensione para **~1920px de largura** e exporte com qualidade **80–85%**.
+- ✅ Meta de peso: **< 500 KB por imagem**.
+- ✅ Ferramentas úteis: [TinyPNG](https://tinypng.com/), [Squoosh](https://squoosh.app/), ou WebP.
 
 ### 📝 Nomenclatura
 
-Siga o padrão consistente:
+Para controlar a ordem do carrossel, use nomes numéricos sequenciais:
 ```
-✅ projeto-1-img1.jpg
-✅ projeto-1-img2.jpg
-✅ projeto-12-img3.jpg
-
-❌ galpao-foto.jpg
-❌ IMG_2024.jpg
-❌ nova-imagem-do-projeto.jpg
+✅ Projeto 1.1.jpg
+✅ Projeto 1.2.jpg
+✅ Projeto 1.3.jpg
 ```
+Qualquer nome funciona, mas a ordem de exibição é a ordem alfabética/numérica do nome.
 
 ---
 
@@ -185,93 +151,42 @@ Siga o padrão consistente:
 
 ### ❌ Problema: Imagem não aparece
 
-**Causa 1:** Import incorreto
-```typescript
-// ❌ ERRADO
-import projeto1 from "assets/projeto-1.jpg";
+**Causa 1:** Arquivo em formato `.DNG` (RAW) → não é exibido pelo navegador.
+- **Solução:** converta para `.jpg` ou `.png`.
 
-// ✅ CORRETO
-import projeto1 from "@/assets/projeto-1.jpg";
-```
+**Causa 2:** Extensão não suportada pelo glob.
+- Use apenas `.jpg`, `.jpeg` ou `.png`.
 
-**Causa 2:** Caminho do arquivo errado
-- Verifique se o arquivo existe em `src/assets/`
-- Verifique a extensão (.jpg, .png, .webp)
+**Causa 3:** Imagem fora de uma pasta `Projeto N ...`.
+- A imagem precisa estar **dentro** da pasta do projeto, não solta em `src/assets/`.
 
-### ❌ Problema: Modal mostra apenas 1 imagem
+### ❌ Problema: Imagens na ordem errada
 
-**Causa:** Gallery não foi adicionada ou está vazia
-```typescript
-// ❌ PROBLEMA
-{
-  image: projeto1,
-  // ... outras propriedades
-  // gallery não existe ou está vazia
-}
+**Causa:** A ordem segue o nome do arquivo.
+- **Solução:** renomeie os arquivos com prefixo numérico (`1.1`, `1.2`, `1.3`...).
 
-// ✅ SOLUÇÃO
-{
-  image: projeto1,
-  // ... outras propriedades
-  gallery: [projeto1, projeto1_img2, projeto1_img3],
-}
-```
+### ❌ Problema: Capa do card errada
 
-### ❌ Problema: Erro de compilação TypeScript
+**Causa:** A capa é sempre a **primeira** imagem da galeria.
+- **Solução:** renomeie a foto desejada para que ela venha primeiro na ordem alfabética.
 
-**Causa:** Sintaxe incorreta no array
-```typescript
-// ❌ ERRADO (falta vírgula)
-gallery: [projeto1 projeto2 projeto3]
+### ❌ Problema: Projeto novo não aparece
 
-// ✅ CORRETO
-gallery: [projeto1, projeto2, projeto3]
-```
+- Verifique se você adicionou tanto a entrada em `galleries` quanto o objeto no array `projects`.
+- Verifique se o token (`"/Projeto 13 "`) tem a barra antes e o espaço depois do número.
 
 ---
 
 ## 🎯 Checklist Rápido
 
-Antes de fazer commit, verifique:
+Para trocar fotos de um projeto existente:
 
-- [ ] Todas as imagens estão na pasta `src/assets/`
-- [ ] Todos os imports estão no topo do `Home.tsx`
-- [ ] A propriedade `gallery` foi adicionada ao projeto
-- [ ] O array tem entre 3 e 10 imagens
-- [ ] A primeira imagem do `gallery` é a mesma do `image`
-- [ ] As imagens foram otimizadas (<500KB cada)
-- [ ] Testei o modal clicando no projeto
+- [ ] As imagens estão na pasta correta dentro de `src/assets/` (veja o mapa)
+- [ ] São `.jpg`, `.jpeg` ou `.png` (não `.DNG`)
+- [ ] Estão nomeadas na ordem desejada (numérica)
+- [ ] Foram otimizadas (< 500 KB cada)
+- [ ] Testei o card e o modal clicando no projeto
 
 ---
 
-## 📊 Status Atual dos Projetos
-
-| Projeto | Imagens na Galeria | Status |
-|---------|-------------------|--------|
-| Galpão Fabril | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Prédio Administrativo | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpão Logístico | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpão Industrial | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpão Industrial (Piracicaba) | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpões Industriais | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpão de Lona | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpões para Estoque | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Complexo Industrial (Saltinho) | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Galpão para Estoque (Piracicaba) | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Fundação e Pilares | 3 (temporário) | ⚠️ Precisa imagens reais |
-| Complexo Industrial (Piracicaba) | 3 (temporário) | ⚠️ Precisa imagens reais |
-
-> 💡 **Nota:** Atualmente todos os projetos têm 3 imagens temporárias (a mesma imagem repetida 3 vezes) para demonstração do carrossel. Substitua por imagens reais seguindo este guia.
-
----
-
-## 🔗 Arquivos Relacionados
-
-- **Componente do Modal**: `src/components/ProjectModal.tsx`
-- **Carrossel de Projetos**: `src/components/ProjectsCarousel.tsx`
-- **Dados dos Projetos**: `src/pages/Home.tsx` (linhas 90-211)
-- **Interface TypeScript**: `src/components/ProjectsCarousel.tsx` (linhas 10-19)
-
----
-
-**Última atualização:** 31 de Janeiro de 2026
+**Última atualização:** 09 de Junho de 2026

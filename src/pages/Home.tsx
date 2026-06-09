@@ -27,19 +27,37 @@ import logo5 from "@/assets/Logo5.jpg";
 import logo6 from "@/assets/Logo6.jpg";
 import logo7 from "@/assets/Logo7.jpg";
 import logo8 from "@/assets/Logo8.jpg";
-import projeto1 from "@/assets/projeto-1.jpg";
-import projeto2 from "@/assets/projeto-2.jpg";
-import projeto3 from "@/assets/projeto-3.jpg";
-import projeto4 from "@/assets/projeto-4.jpg";
-import projeto5 from "@/assets/projeto-5.jpg";
-import projeto6 from "@/assets/projeto-6.jpg";
-import projeto7 from "@/assets/projeto-7.jpg";
-import projeto8 from "@/assets/projeto-8.jpg";
-import projeto9 from "@/assets/projeto-9.jpg";
-import projeto10 from "@/assets/projeto-10.jpg";
-import projeto11 from "@/assets/projeto-11.jpg";
-import projeto12 from "@/assets/projeto-12.jpg";
+// Carrega automaticamente todas as imagens das pastas de projetos em src/assets/.
+// Ignora arquivos .txt e .DNG (formato RAW que o navegador não exibe).
+// Para adicionar/trocar fotos, basta colocar os arquivos na pasta correta — não é
+// preciso editar imports aqui.
+const galleryFiles = import.meta.glob(
+  "../assets/Projeto*/*.{jpg,JPG,jpeg,JPEG,png,PNG}",
+  { eager: true, query: "?url", import: "default" }
+) as Record<string, string>;
 
+// Retorna as imagens de uma pasta (identificada pelo token, ex.: "/Projeto 1 "),
+// ordenadas pelo nome do arquivo (ordem numérica natural).
+const getGallery = (token: string): string[] =>
+  Object.entries(galleryFiles)
+    .filter(([path]) => path.includes(token))
+    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
+    .map(([, url]) => url);
+
+const galleries = {
+  galpaoFabril: getGallery("/Projeto 1 "),
+  predioAdministrativo: getGallery("/Projeto 4 "),
+  galpaoLogistico: getGallery("/Projeto 3 "),
+  galpaoIndustrial22m: getGallery("/Projeto 2 "),
+  galpaoIndustrialPiracicaba: getGallery("/Projeto 9 "),
+  galpoesIndustriais: getGallery("/Projeto 5 "),
+  galpaoLona: getGallery("/Projeto 7 "),
+  galpoesEstoque: getGallery("/Projeto 8 "),
+  complexoSaltinho: getGallery("/Projeto 11 "),
+  galpaoEstoquePiracicaba: getGallery("/Projeto 10 "),
+  fundacaoPilares: getGallery("/Projeto 6 "),
+  complexoPiracicaba: getGallery("/Projeto 12 "),
+};
 
 const Home = () => {
   const stats = [
@@ -89,7 +107,7 @@ const Home = () => {
 
   const projects = [
     {
-      image: projeto1,
+      image: galleries.galpaoFabril[0],
       title: "Galpão Fabril",
       description: "Com estrutura em concreto pré-moldado e metálica, projetado para unir eficiência, resistência e funcionalidade.",
       year: "2024",
@@ -97,10 +115,10 @@ const Home = () => {
       area: "4.360 m²",
       client: "Vão Livre 38m",
       status: "concluido" as const,
-      gallery: [projeto1, projeto1, projeto1],
+      gallery: galleries.galpaoFabril,
     },
     {
-      image: projeto2,
+      image: galleries.predioAdministrativo[0],
       title: "Prédio Administrativo",
       description: "Estrutura totalmente pré-moldada, utilizando lajes alveolares para maior eficiência e precisão construtiva.",
       year: "2025",
@@ -108,10 +126,10 @@ const Home = () => {
       area: "2.620 m² construídos",
       client: "Altura 24,5 (6 andares)",
       status: "concluido" as const,
-      gallery: [projeto2, projeto2, projeto2],
+      gallery: galleries.predioAdministrativo,
     },
     {
-      image: projeto3,
+      image: galleries.galpaoLogistico[0],
       title: "Galpão Logístico",
       description: "Com pilares pré-moldados e fechamento em alvenaria, projetado para oferecer amplitude, resistência e praticidade operacional.",
       year: "2023",
@@ -119,10 +137,10 @@ const Home = () => {
       area: "3.420 m² construídos",
       client: "Vão Livre de 30m",
       status: "concluido" as const,
-      gallery: [projeto3, projeto3, projeto3],
+      gallery: galleries.galpaoLogistico,
     },
     {
-      image: projeto4,
+      image: galleries.galpaoIndustrial22m[0],
       title: "Galpão Industrial",
       description: "Com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, proporcionando amplo vão livre e excelente aproveitamento interno.",
       year: "2024",
@@ -130,10 +148,10 @@ const Home = () => {
       area: "2.600 m²",
       client: "Vão Livre 22m",
       status: "concluido" as const,
-      gallery: [projeto4, projeto4, projeto4],
+      gallery: galleries.galpaoIndustrial22m,
     },
     {
-      image: projeto9,
+      image: galleries.galpaoIndustrialPiracicaba[0],
       title: "Galpão Industrial",
       description: "Galpão com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, projetado para oferecer amplo resistência e eficiência construtiva.",
       year: "2025",
@@ -141,10 +159,10 @@ const Home = () => {
       area: "7.200 m²",
       client: "60 x 120m",
       status: "em_andamento" as const,
-      gallery: [projeto9, projeto9, projeto9],
+      gallery: galleries.galpaoIndustrialPiracicaba,
     },
     {
-      image: projeto5,
+      image: galleries.galpoesIndustriais[0],
       title: "Galpões Industriais",
       description: "Conjunto de quatro galpões com pilares pré-moldados e estrutura metálica de cobertura, desenvolvidos para garantir amplitude, durabilidade e eficiência nas operações.",
       year: "2024",
@@ -152,10 +170,10 @@ const Home = () => {
       area: "4.000 m²",
       client: "Vão Livre 30m",
       status: "concluido" as const,
-      gallery: [projeto5, projeto5, projeto5],
+      gallery: galleries.galpoesIndustriais,
     },
     {
-      image: projeto7,
+      image: galleries.galpaoLona[0],
       title: "Galpão de Lona",
       description: "Com estrutura metálica galvanizada e cobertura em lona, projetado para proporcionar leveza, praticidade e resistência às intempéries.",
       year: "2023",
@@ -163,10 +181,10 @@ const Home = () => {
       area: "1.500 m²",
       client: "Vão Livre 20m",
       status: "concluido" as const,
-      gallery: [projeto7, projeto7, projeto7],
+      gallery: galleries.galpaoLona,
     },
     {
-      image: projeto8,
+      image: galleries.galpoesEstoque[0],
       title: "Galpões para Estoque",
       description: "Com estrutura em concreto pré-moldado, vigas de cobertura protendidas e painéis de fechamento, projetados para garantir robustez, durabilidade e amplo espaço interno.",
       year: "2024",
@@ -174,10 +192,10 @@ const Home = () => {
       area: "2.100 m²",
       client: "Vão livre 27m",
       status: "concluido" as const,
-      gallery: [projeto8, projeto8, projeto8],
+      gallery: galleries.galpoesEstoque,
     },
     {
-      image: projeto11,
+      image: galleries.complexoSaltinho[0],
       title: "Complexo Industrial",
       description: "Diversos galpões em estrutura pré-moldada, projetado para oferecer robustez, eficiência e flexibilidade às operações industriais.",
       year: "2025",
@@ -185,10 +203,10 @@ const Home = () => {
       area: "+ 40 mil m² de terreno",
       client: "-",
       status: "em_andamento" as const,
-      gallery: [projeto11, projeto11, projeto11],
+      gallery: galleries.complexoSaltinho,
     },
     {
-      image: projeto10,
+      image: galleries.galpaoEstoquePiracicaba[0],
       title: "Galpão para Estoque",
       description: "Com fundações, muro de arrimo de 4 m, pilares pré-moldados e painéis de fechamento, garantindo segurança estrutural e ótimo aproveitamento interno.",
       year: "2023",
@@ -196,10 +214,10 @@ const Home = () => {
       area: "870 m²",
       client: "Pé-direito 8m",
       status: "concluido" as const,
-      gallery: [projeto10, projeto10, projeto10],
+      gallery: galleries.galpaoEstoquePiracicaba,
     },
     {
-      image: projeto6,
+      image: galleries.fundacaoPilares[0],
       title: "Fundação e Pilares",
       description: "Execução de fundações e pilares pré-moldados projetada para oferecer amplo vão livre e excelente desempenho estrutural.",
       year: "2024",
@@ -207,10 +225,10 @@ const Home = () => {
       area: "9.650 m² construídos",
       client: "Vão Livre de 24m",
       status: "concluido" as const,
-      gallery: [projeto6, projeto6, projeto6],
+      gallery: galleries.fundacaoPilares,
     },
     {
-      image: projeto12,
+      image: galleries.complexoPiracicaba[0],
       title: "Complexo Industrial",
       description: "Diversos galpões, incluindo áreas industriais, refeitório e vestiários, projetado para garantir funcionalidade, conforto e eficiência operacional.",
       year: "2025",
@@ -218,7 +236,7 @@ const Home = () => {
       area: "48 mil m²",
       client: "-",
       status: "em_andamento" as const,
-      gallery: [projeto12, projeto12, projeto12],
+      gallery: galleries.complexoPiracicaba,
     },
   ];
 

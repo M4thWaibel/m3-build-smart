@@ -4,6 +4,11 @@ export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
+  // O bot da Merlin injeta um CSS com classes genéricas (.flex) depois do nosso, e com a mesma
+  // especificidade ele ganhava de lg:hidden, lg:block... (ícones do celular aparecendo no
+  // cabeçalho do computador). Presos ao #root, os utilitários do site sempre ganham, e os
+  // elementos do bot, que ficam fora do #root, não são tocados por eles.
+  important: "#root",
   theme: {
     container: {
       center: true,
@@ -14,9 +19,33 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Barlow', 'system-ui', 'sans-serif'],
+        display: ['"Barlow Condensed"', 'Barlow', 'system-ui', 'sans-serif'],
+      },
+      // Escala da proposta no Figma (estilos de texto); o sufixo -m é a versão do celular
+      fontSize: {
+        display: ["88px", { lineHeight: "84px" }],
+        "display-m": ["52px", { lineHeight: "50px" }],
+        t1: ["64px", { lineHeight: "64px" }],
+        "t1-m": ["40px", { lineHeight: "42px" }],
+        t2: ["44px", { lineHeight: "46px" }],
+        "t2-m": ["32px", { lineHeight: "34px" }],
+        t3: ["28px", { lineHeight: "32px" }],
+        numero: ["64px", { lineHeight: "64px" }],
+        "numero-m": ["48px", { lineHeight: "48px" }],
+        grande: ["20px", { lineHeight: "30px" }],
+        texto: ["17px", { lineHeight: "26px" }],
+        pequeno: ["15px", { lineHeight: "22px" }],
+        rotulo: ["15px", { lineHeight: "20px" }],
+        botao: ["16px", { lineHeight: "20px" }],
+        cota: ["17px", { lineHeight: "20px" }],
       },
       colors: {
+        noite: "hsl(var(--noite))",
+        obra: "hsl(var(--obra))",
+        concreto: "hsl(var(--concreto))",
+        aco: "hsl(var(--aco))",
+        linha: "hsl(var(--linha))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

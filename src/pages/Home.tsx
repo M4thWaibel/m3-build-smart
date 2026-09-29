@@ -1,24 +1,30 @@
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import ProjectsCarousel from "@/components/ProjectsCarousel";
-import PartnersCarousel from "@/components/PartnersCarousel";
 import { Link } from "react-router-dom";
+import Pagina from "@/components/Pagina";
+import Cota, { SombraDaCota } from "@/components/Cota";
+import ObraCartao from "@/components/ObraCartao";
+import FichaTecnica from "@/components/FichaTecnica";
+import EtapasDaObra from "@/components/EtapasDaObra";
+import SecaoContato from "@/components/SecaoContato";
+import BotaoOrcamento from "@/components/BotaoOrcamento";
+import { Button } from "@/components/ui/button";
 import {
-  Building2,
-  Factory,
-  Hammer,
-  HardHat,
-  Shield,
-  Clock,
-  Users,
-  FileCheck,
-  ChevronRight,
-  CheckCircle2
-} from "lucide-react";
+  DESTAQUE,
+  VITRINE,
+  aberturaDasObras,
+  obraPorSlug,
+  obras,
+  obrasPorSlugs,
+  rotuloDaSituacao,
+  type Obra,
+} from "@/data/obras";
 import heroImage from "../assets/hero-industrial.png";
 import fabricacaoImage from "@/assets/fabricacao-propria.jpg";
+import construcoesImage from "@/assets/projeto-3.jpg";
+import galpoesImage from "@/assets/projeto-1.jpg";
+import preMoldadosImage from "@/assets/projeto-6.jpg";
+// Galpão de Lona (estrutura metálica galvanizada), a mesma foto da página do serviço;
+// projeto-2.jpg era o Prédio Administrativo, que é todo pré-moldado
+import estruturasImage from "@/assets/projeto-7.jpg";
 import logo1 from "@/assets/Logo1.jpg";
 import logo2 from "@/assets/Logo2.jpg";
 import logo3 from "@/assets/Logo3.jpg";
@@ -27,567 +33,256 @@ import logo5 from "@/assets/Logo5.jpg";
 import logo6 from "@/assets/Logo6.jpg";
 import logo7 from "@/assets/Logo7.jpg";
 import logo8 from "@/assets/Logo8.jpg";
-// Carrega automaticamente todas as imagens das pastas de projetos em src/assets/.
-// Ignora arquivos .txt e .DNG (formato RAW que o navegador não exibe).
-// Para adicionar/trocar fotos, basta colocar os arquivos na pasta correta — não é
-// preciso editar imports aqui.
-const galleryFiles = import.meta.glob(
-  "../assets/Projeto*/*.{jpg,JPG,jpeg,JPEG,png,PNG}",
-  { eager: true, query: "?url", import: "default" }
-) as Record<string, string>;
+import logo9 from "@/assets/Logo9.png";
+import logo10 from "@/assets/Logo10.png";
 
-// Retorna as imagens de uma pasta (identificada pelo token, ex.: "/Projeto 1 "),
-// ordenadas pelo nome do arquivo (ordem numérica natural).
-const getGallery = (token: string): string[] =>
-  Object.entries(galleryFiles)
-    .filter(([path]) => path.includes(token))
-    .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true }))
-    .map(([, url]) => url);
-
-const galleries = {
-  galpaoFabril: getGallery("/Projeto 1 "),
-  predioAdministrativo: getGallery("/Projeto 4 "),
-  galpaoLogistico: getGallery("/Projeto 3 "),
-  galpaoIndustrial22m: getGallery("/Projeto 2 "),
-  galpaoIndustrialPiracicaba: getGallery("/Projeto 9 "),
-  galpoesIndustriais: getGallery("/Projeto 5 "),
-  galpaoLona: getGallery("/Projeto 7 "),
-  galpoesEstoque: getGallery("/Projeto 8 "),
-  complexoSaltinho: getGallery("/Projeto 11 "),
-  galpaoEstoquePiracicaba: getGallery("/Projeto 10 "),
-  fundacaoPilares: getGallery("/Projeto 6 "),
-  complexoPiracicaba: getGallery("/Projeto 12 "),
-};
-
-const Home = () => {
-  const stats = [
-    {
-      value: "600 m³",
-      label: "Pré-moldados/mês",
-      description: "Capacidade de produção mensal",
-    },
-    {
-      value: "50 ton",
-      label: "Estruturas metálicas/mês",
-      description: "Produção especializada",
-    },
-    {
-      value: "+20 anos",
-      label: "De experiência",
-      description: "Profissionais qualificados",
-    },
-  ];
-
-  const services = [
-    {
-      icon: Building2,
-      title: "Construções industriais em geral",
-      description: "Fundação, alvenaria estrutural e galpões completos para sua indústria",
-      path: "/construcoes-industriais"
-    },
-    {
-      icon: Factory,
-      title: "Galpões industriais e logísticos",
-      description: "Projetos sob medida com eficiência e durabilidade garantida",
-      path: "/galpoes-industriais"
-    },
-    {
-      icon: Hammer,
-      title: "Pré-moldados fabricados",
-      description: "Pilares, vigas, placas de fechamento, muros de divisa, protendidos, escadas e muito mais",
-      path: "/pre-moldados"
-    },
-    {
-      icon: HardHat,
-      title: "Estruturas metálicas fabricadas",
-      description: "Estrutura de cobertura e fechamento, pilares entre outros",
-      path: "/estruturas-metalicas"
-    },
-  ];
-
-  const projects = [
-    {
-      image: galleries.galpaoFabril[0],
-      title: "Galpão Fabril",
-      description: "Com estrutura em concreto pré-moldado e metálica, projetado para unir eficiência, resistência e funcionalidade.",
-      year: "2024",
-      location: "Boituva, SP",
-      area: "4.360 m²",
-      client: "Vão Livre 38m",
-      status: "concluido" as const,
-      gallery: galleries.galpaoFabril,
-    },
-    {
-      image: galleries.predioAdministrativo[0],
-      title: "Prédio Administrativo",
-      description: "Estrutura totalmente pré-moldada, utilizando lajes alveolares para maior eficiência e precisão construtiva.",
-      year: "2025",
-      location: "Boituva, SP",
-      area: "2.620 m² construídos",
-      client: "Altura 24,5 (6 andares)",
-      status: "concluido" as const,
-      gallery: galleries.predioAdministrativo,
-    },
-    {
-      image: galleries.galpaoLogistico[0],
-      title: "Galpão Logístico",
-      description: "Com pilares pré-moldados e fechamento em alvenaria, projetado para oferecer amplitude, resistência e praticidade operacional.",
-      year: "2023",
-      location: "Cerquilho, SP",
-      area: "3.420 m² construídos",
-      client: "Vão Livre de 30m",
-      status: "concluido" as const,
-      gallery: galleries.galpaoLogistico,
-    },
-    {
-      image: galleries.galpaoIndustrial22m[0],
-      title: "Galpão Industrial",
-      description: "Com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, proporcionando amplo vão livre e excelente aproveitamento interno.",
-      year: "2024",
-      location: "Boituva, SP",
-      area: "2.600 m²",
-      client: "Vão Livre 22m",
-      status: "concluido" as const,
-      gallery: galleries.galpaoIndustrial22m,
-    },
-    {
-      image: galleries.galpaoIndustrialPiracicaba[0],
-      title: "Galpão Industrial",
-      description: "Galpão com pilares pré-moldados, vigas de rolamento e estrutura metálica de cobertura, projetado para oferecer amplo resistência e eficiência construtiva.",
-      year: "2025",
-      location: "Piracicaba, SP",
-      area: "7.200 m²",
-      client: "60 x 120m",
-      status: "em_andamento" as const,
-      gallery: galleries.galpaoIndustrialPiracicaba,
-    },
-    {
-      image: galleries.galpoesIndustriais[0],
-      title: "Galpões Industriais",
-      description: "Conjunto de quatro galpões com pilares pré-moldados e estrutura metálica de cobertura, desenvolvidos para garantir amplitude, durabilidade e eficiência nas operações.",
-      year: "2024",
-      location: "Boituva, SP",
-      area: "4.000 m²",
-      client: "Vão Livre 30m",
-      status: "concluido" as const,
-      gallery: galleries.galpoesIndustriais,
-    },
-    {
-      image: galleries.galpaoLona[0],
-      title: "Galpão de Lona",
-      description: "Com estrutura metálica galvanizada e cobertura em lona, projetado para proporcionar leveza, praticidade e resistência às intempéries.",
-      year: "2023",
-      location: "Cerquilho, SP",
-      area: "1.500 m²",
-      client: "Vão Livre 20m",
-      status: "concluido" as const,
-      gallery: galleries.galpaoLona,
-    },
-    {
-      image: galleries.galpoesEstoque[0],
-      title: "Galpões para Estoque",
-      description: "Com estrutura em concreto pré-moldado, vigas de cobertura protendidas e painéis de fechamento, projetados para garantir robustez, durabilidade e amplo espaço interno.",
-      year: "2024",
-      location: "Saltinho, SP",
-      area: "2.100 m²",
-      client: "Vão livre 27m",
-      status: "concluido" as const,
-      gallery: galleries.galpoesEstoque,
-    },
-    {
-      image: galleries.complexoSaltinho[0],
-      title: "Complexo Industrial",
-      description: "Diversos galpões em estrutura pré-moldada, projetado para oferecer robustez, eficiência e flexibilidade às operações industriais.",
-      year: "2025",
-      location: "Saltinho, SP",
-      area: "+ 40 mil m² de terreno",
-      client: "-",
-      status: "em_andamento" as const,
-      gallery: galleries.complexoSaltinho,
-    },
-    {
-      image: galleries.galpaoEstoquePiracicaba[0],
-      title: "Galpão para Estoque",
-      description: "Com fundações, muro de arrimo de 4 m, pilares pré-moldados e painéis de fechamento, garantindo segurança estrutural e ótimo aproveitamento interno.",
-      year: "2023",
-      location: "Piracicaba, SP",
-      area: "870 m²",
-      client: "Pé-direito 8m",
-      status: "concluido" as const,
-      gallery: galleries.galpaoEstoquePiracicaba,
-    },
-    {
-      image: galleries.fundacaoPilares[0],
-      title: "Fundação e Pilares",
-      description: "Execução de fundações e pilares pré-moldados projetada para oferecer amplo vão livre e excelente desempenho estrutural.",
-      year: "2024",
-      location: "Piracicaba, SP",
-      area: "9.650 m² construídos",
-      client: "Vão Livre de 24m",
-      status: "concluido" as const,
-      gallery: galleries.fundacaoPilares,
-    },
-    {
-      image: galleries.complexoPiracicaba[0],
-      title: "Complexo Industrial",
-      description: "Diversos galpões, incluindo áreas industriais, refeitório e vestiários, projetado para garantir funcionalidade, conforto e eficiência operacional.",
-      year: "2025",
-      location: "Piracicaba, SP",
-      area: "48 mil m²",
-      client: "-",
-      status: "em_andamento" as const,
-      gallery: galleries.complexoPiracicaba,
-    },
-  ];
-
-  const partners = [
-    { src: logo1, alt: "Parceiro 1" },
-    { src: logo2, alt: "Parceiro 2" },
-    { src: logo3, alt: "Parceiro 3" },
-    { src: logo4, alt: "Parceiro 4" },
-    { src: logo5, alt: "Parceiro 5" },
-    { src: logo6, alt: "Parceiro 6" },
-    { src: logo7, alt: "Parceiro 7" },
-    { src: logo8, alt: "Parceiro 8" },
-  ];
-
-  const differentials = [
-    {
-      icon: Shield,
-      title: "Segurança total",
-      description: "Normas técnicas rigorosas e equipe altamente treinada",
-    },
-    {
-      icon: Clock,
-      title: "Compromisso com prazos",
-      description: "Gestão eficiente para entrega pontual dos projetos",
-    },
-    {
-      icon: FileCheck,
-      title: "Gestão transparente",
-      description: "Acompanhamento detalhado em cada etapa da obra",
-    },
-    {
-      icon: Users,
-      title: "Equipe experiente",
-      description: "Profissionais especializados em construções industriais",
-    },
-  ];
+const capacidades = [
+  { numero: "2.000", unidade: "m³", texto: "de pré-moldados por mês" },
+  { numero: "50", unidade: "t", texto: "de estrutura metálica por mês" },
+];
 
 
-  return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+const servicos = [
+  {
+    titulo: "Construções industriais",
+    descricao: "Fundação, alvenaria estrutural e galpões completos para a sua indústria.",
+    curta: "Fundação, alvenaria estrutural e galpões completos.",
+    caminho: "/construcoes-industriais",
+    foto: construcoesImage,
+  },
+  {
+    titulo: "Galpões industriais e logísticos",
+    descricao: "Projetos sob medida para produção, estoque e distribuição.",
+    curta: "Sob medida para produção, estoque e distribuição.",
+    caminho: "/galpoes-industriais",
+    foto: galpoesImage,
+  },
+  {
+    titulo: "Pré-moldados",
+    descricao: "Pilares, vigas, placas de fechamento, muros, protendidos e escadas.",
+    curta: "Pilares, vigas, placas, muros, protendidos e escadas.",
+    caminho: "/pre-moldados",
+    foto: preMoldadosImage,
+  },
+  {
+    titulo: "Estruturas metálicas",
+    descricao: "Estruturas de cobertura e fechamento, pilares, mezaninos e passarelas.",
+    curta: "Cobertura e fechamento, pilares, mezaninos e passarelas.",
+    caminho: "/estruturas-metalicas",
+    foto: estruturasImage,
+  },
+];
 
-      <main className="flex-1">
-        {/* Seção 01 - Hero */}
-        <section id="hero" className="relative min-h-screen flex items-center pt-20">
-          <div className="absolute inset-0 z-0">
-            <img
-              src={heroImage}
-              alt="Construção industrial"
-              className="w-full h-full object-cover"
+const clientes = [
+  { logo: logo1, nome: "Arqplast" },
+  { logo: logo2, nome: "USM" },
+  { logo: logo3, nome: "Cipatex" },
+  { logo: logo4, nome: "Vanilplast" },
+  { logo: logo5, nome: "Rinen" },
+  { logo: logo6, nome: "Unafe" },
+  { logo: logo7, nome: "Vollmens" },
+  { logo: logo8, nome: "West Brasil" },
+  { logo: logo9, nome: "Cobrecom" },
+  { logo: logo10, nome: "Angelelli" },
+];
+
+const destaque = obraPorSlug(DESTAQUE) as Obra;
+const vitrine = obrasPorSlugs(VITRINE);
+
+const Home = () => (
+  <Pagina>
+    {/* Hero */}
+    <section id="hero" className="relative isolate flex min-h-[700px] items-end overflow-hidden bg-noite lg:min-h-[760px]">
+      <img
+        src={heroImage}
+        alt="Vista aérea da fábrica da M3 com peças pré-moldadas e estruturas metálicas no pátio"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
+      />
+      <div
+        className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(10,30,58,0.2)_0%,rgba(10,30,58,0.55)_40%,rgba(10,30,58,0.94)_100%)] lg:bg-[linear-gradient(90deg,rgba(10,30,58,0.93)_0%,rgba(10,30,58,0.8)_36%,rgba(10,30,58,0.25)_68%,rgba(10,30,58,0.05)_100%)]"
+        aria-hidden="true"
+      />
+      <div className="moldura pb-9 lg:pb-[108px]">
+        <h1 className="max-w-[800px] font-display text-display-m font-semibold text-white lg:text-display">
+          Galpões e estruturas industriais, do projeto à montagem.
+        </h1>
+        <p className="mt-4 max-w-[600px] text-texto text-white/90 lg:mt-6 lg:text-grande">
+          <span className="lg:hidden">Fábrica própria: 2.000 m³ de pré-moldados e 50 t de estrutura metálica por mês.</span>
+          <span className="hidden lg:inline">
+            Fábrica própria com capacidade de 2.000 m³ de pré-moldados e 50 toneladas de estrutura metálica por mês. A sua
+            obra não fica esperando fornecedor.
+          </span>
+        </p>
+        <div className="mt-8 flex flex-col gap-4 lg:mt-10 lg:flex-row lg:items-center">
+          <BotaoOrcamento id="cta-merlin1" variant="destaque" />
+          <Button asChild variant="contornoClaro" size="m3" className="hidden lg:inline-flex">
+            <a href="#obras">Ver obras realizadas</a>
+          </Button>
+          <a href="#obras" className="text-center text-rotulo font-medium text-white underline underline-offset-4 lg:hidden">
+            Ver obras realizadas
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Obras realizadas */}
+    <section id="obras" className="py-[72px] lg:py-[120px]">
+      <div className="moldura">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+          <h2 className="font-display text-t1-m font-semibold lg:text-t1">Obras realizadas</h2>
+          <p className="text-texto text-aco lg:max-w-[470px]">{aberturaDasObras()}</p>
+        </div>
+
+        <article className="mt-8 grid gap-[18px] lg:mt-14 lg:grid-cols-[minmax(0,840fr)_minmax(0,416fr)] lg:items-center lg:gap-14">
+          <Link
+            to={`/obras/${destaque.slug}`}
+            tabIndex={-1}
+            aria-hidden="true"
+            className="relative block aspect-[4/3] overflow-hidden rounded bg-concreto lg:aspect-[3/2]"
+          >
+            <img src={destaque.fotos[0]} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            {destaque.cota && (
+              <>
+                <SombraDaCota />
+                <Cota medida={destaque.cota} className="absolute inset-x-[10%] bottom-6 lg:inset-x-[16.5%] lg:bottom-8" />
+              </>
+            )}
+          </Link>
+          <div>
+            <p className="text-rotulo text-aco">{rotuloDaSituacao(destaque)}</p>
+            <h3 className="mt-[18px] font-display text-t2-m font-semibold lg:mt-[22px] lg:text-t2">{destaque.titulo}</h3>
+            <p className="mt-[18px] text-texto text-aco lg:mt-[22px]">{destaque.descricao}</p>
+            <FichaTecnica
+              linhas={[{ rotulo: "Local", valor: destaque.cidade }, ...destaque.ficha]}
+              className="mt-[18px] lg:mt-[22px]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-transparent"></div>
+            <Button asChild variant="contorno" size="m3" className="mt-[18px] w-full lg:mt-8 lg:w-auto">
+              <Link to={`/obras/${destaque.slug}`} aria-label={`Ver a obra: ${destaque.titulo}`}>
+                Ver a obra
+              </Link>
+            </Button>
           </div>
+        </article>
 
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl">
-              <p className="text-primary-foreground/90 text-sm font-medium mb-4">
-                Fundada em 2022 • Profissionais com +20 anos de experiência
-              </p>
-              <h1 className="text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
-                Soluções em construções industriais sob medida para todas as necessidades da sua empresa
-              </h1>
-              <p className="text-xl text-primary-foreground/90 mb-8 leading-relaxed">
-                Nossa gestão e fabricação própria eliminam atrasos e garantem a qualidade que sua indústria precisa para crescer com segurança
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-8">
-                  <a href="#" id="cta-merlin1">
-                    Solicite um orçamento
-                    <ChevronRight className="ml-2 w-5 h-5" />
-                  </a>
-                </Button>
-                <Button asChild size="lg" variant="outline" className="bg-background/10 border-primary-foreground text-primary-foreground hover:bg-background/20 text-lg px-8">
-                  <a href="#portfolio">Conheça nossos projetos</a>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div className="mt-8 grid gap-9 md:grid-cols-2 md:gap-6 lg:mt-14 lg:grid-cols-3">
+          {/* No celular e no tablet ficam dois cartões, como na proposta; o terceiro volta a partir de lg */}
+          {vitrine.map((obra, indice) => (
+            <ObraCartao key={obra.slug} obra={obra} className={indice === 2 ? "hidden lg:block" : ""} />
+          ))}
+        </div>
 
-        {/* Seção 02 - Números de Autoridade */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {stats.map((stat, index) => (
-                <Card key={index} className="border-border hover:shadow-lg transition-shadow">
-                  <CardContent className="p-8 text-center">
-                    <div className="text-5xl font-bold text-primary mb-2">{stat.value}</div>
-                    <div className="text-lg font-semibold text-foreground mb-2">{stat.label}</div>
-                    <div className="text-sm text-muted-foreground">{stat.description}</div>
-                  </CardContent>
-                </Card>
+        <Button asChild variant="contorno" size="m3" className="mt-8 w-full lg:mt-14 lg:w-auto">
+          <Link to="/obras">Ver as {obras.length} obras</Link>
+        </Button>
+      </div>
+    </section>
+
+    {/* Fábrica */}
+    <section id="fabrica" className="bg-concreto py-[72px] lg:py-[120px]">
+      <div className="moldura">
+        <div className="grid gap-7 lg:grid-cols-2 lg:items-center lg:gap-[72px]">
+          <div>
+            <h2 className="font-display text-t1-m font-semibold lg:text-t1">Fabricamos as peças que montamos</h2>
+            <p className="mt-7 text-texto text-aco lg:mt-8 lg:text-grande">
+              Pilares, vigas, lajes e estruturas metálicas saem da nossa fábrica direto para a obra. Sem intermediário, cada
+              peça é inspecionada antes da entrega e o cronograma não depende de terceiros.
+            </p>
+            <ul className="mt-7 grid grid-cols-2 gap-6 lg:mt-8 lg:flex lg:gap-16">
+              {capacidades.map((item) => (
+                <li key={item.unidade} className="lg:w-[210px]">
+                  <p className="flex items-baseline gap-1 font-display font-semibold text-primary lg:gap-1.5">
+                    <span className="text-numero-m font-medium lg:text-numero">{item.numero}</span>
+                    <span className="text-t3">{item.unidade}</span>
+                  </p>
+                  <p className="mt-1 text-pequeno text-aco lg:mt-1.5 lg:text-texto">{item.texto}</p>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </section>
+          <img
+            src={fabricacaoImage}
+            alt="Pátio da fábrica com pilares, vigas e treliças metálicas prontos para sair"
+            loading="lazy"
+            decoding="async"
+            className="aspect-[4/3] w-full rounded object-cover lg:aspect-[620/466]"
+          />
+        </div>
 
-        {/* Seção 03 - Atuação */}
-        <section id="servicos" className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                Conheça as soluções completas que oferecemos
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              {services.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <Link to={service.path} key={index} className="block transition-all hover:-translate-y-1">
-                    <Card className="border-border hover:shadow-lg h-full">
-                      <CardContent className="p-6 flex flex-col h-full">
-                        <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                          <Icon className="w-7 h-7 text-primary" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-foreground mb-2">{service.title}</h3>
-                        <p className="text-sm text-muted-foreground mb-4 flex-1">{service.description}</p>
-                        <div className="flex items-center text-primary text-sm font-medium group">
-                          Saiba mais...
-                          <ChevronRight className="ml-1 w-4 h-4 transition-transform group-hover:translate-x-1" />
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                );
-              })}
-            </div>
-            <div className="text-center">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a href="#" id="cta-merlin2">
-                  Solicite um orçamento
-                  <ChevronRight className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <div className="mt-12 lg:mt-24">
+          <h3 className="font-display text-t2-m font-semibold lg:text-t2">Do projeto à entrega</h3>
+          <EtapasDaObra className="mt-6 lg:mt-10" />
+        </div>
+      </div>
+    </section>
 
-        {/* Seção 04 - Diferencial Competitivo */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-bold text-foreground mb-6">
-                  Fabricação 100% própria, gerando mais qualidade e confiança
-                </h2>
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-                  Nossa estrutura de fabricação própria garante controle total sobre a qualidade dos materiais e permite prazos mais ágeis. Com estoque próprio de pré-moldados e estruturas metálicas, eliminamos atrasos e reduzimos custos, oferecendo o melhor custo-benefício para sua obra.
-                </p>
-                <ul className="space-y-4">
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-0.5" />
-                    <div>
-                      <strong className="text-foreground">Controle de qualidade rigoroso</strong>
-                      <p className="text-muted-foreground text-sm">Cada peça é inspecionada e testada antes da entrega</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-0.5" />
-                    <div>
-                      <strong className="text-foreground">Redução de custos e prazos</strong>
-                      <p className="text-muted-foreground text-sm">Sem intermediários, garantimos melhores preços e entregas rápidas</p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <CheckCircle2 className="w-6 h-6 text-primary flex-shrink-0 mr-3 mt-0.5" />
-                    <div>
-                      <strong className="text-foreground">Capacidade produtiva imediata</strong>
-                      <p className="text-muted-foreground text-sm">Prontos para iniciar a fabricação de acordo com as necessidades de cada projeto.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div className="relative">
+    {/* Serviços */}
+    <section id="servicos" className="pb-14 pt-[72px] lg:pb-24 lg:pt-[120px]">
+      <div className="moldura">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
+          <h2 className="font-display text-t1-m font-semibold lg:text-t1">O que construímos</h2>
+          <p className="hidden text-texto text-aco lg:block lg:max-w-[470px]">
+            Da fundação à cobertura, com peças fabricadas por nós e montadas por equipe especializada.
+          </p>
+        </div>
+        <ul className="mt-7 grid gap-7 md:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-6">
+          {servicos.map((servico) => (
+            <li key={servico.caminho}>
+              <Link
+                to={servico.caminho}
+                className="group flex gap-4 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 lg:block"
+              >
                 <img
-                  src={fabricacaoImage}
-                  alt="Área de fabricação M3"
-                  className="rounded-lg shadow-xl w-full"
+                  src={servico.foto}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="h-[104px] w-[120px] shrink-0 rounded object-cover lg:aspect-[310/232] lg:h-auto lg:w-full"
                 />
-              </div>
-            </div>
-          </div>
-        </section>
+                <div className="lg:mt-3.5">
+                  <h3 className="font-display text-t3 font-semibold text-noite">{servico.titulo}</h3>
+                  <p className="mt-1.5 text-pequeno text-aco lg:mt-3.5 lg:text-texto">
+                    <span className="lg:hidden">{servico.curta}</span>
+                    <span className="hidden lg:inline">{servico.descricao}</span>
+                  </p>
+                  <span className="mt-1.5 inline-block text-rotulo font-medium text-primary underline underline-offset-4 group-hover:text-noite lg:mt-3.5">
+                    Conhecer o serviço
+                  </span>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
 
-        {/* Seção 05 - Portfólio */}
-        <section id="portfolio" className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                Portifólio de Projetos
-              </h2>
-            </div>
-            <div className="mb-12">
-              <ProjectsCarousel projects={projects} />
-            </div>
-            <div className="text-center">
-              <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                <a href="#" id="cta-merlin3">
-                  Solicite um orçamento
-                  <ChevronRight className="ml-2 w-5 h-5" />
-                </a>
-              </Button>
-            </div>
-          </div>
-        </section>
+    {/* Clientes */}
+    <section aria-labelledby="clientes-titulo" className="pb-[72px] lg:pb-[120px]">
+      <div className="moldura">
+        <div className="border-t border-linha pt-8 lg:flex lg:items-center lg:gap-16 lg:pt-12">
+          <h2 id="clientes-titulo" className="text-balance font-sans text-pequeno font-normal text-aco lg:w-[180px] lg:shrink-0">
+            Empresas que confiam na M3
+          </h2>
+          {/* Linhas de 4 (celular) ou 6 (tablet) com a última centralizada; de lg a 1400 px, duas linhas de 5;
+              acima disso, uma linha só (em 10 colunas mais estreitas os logos ficariam ilegíveis) */}
+          <ul className="mt-6 flex flex-wrap justify-center gap-x-2.5 gap-y-5 lg:mt-0 lg:grid lg:flex-1 lg:grid-cols-5 lg:gap-x-4 lg:gap-y-6 min-[1400px]:grid-cols-10">
+            {clientes.map((cliente) => (
+              <li key={cliente.nome} className="w-[82px] md:w-[104px] lg:w-auto">
+                <img
+                  src={cliente.logo}
+                  alt={cliente.nome}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-[34px] w-full object-contain mix-blend-multiply grayscale lg:h-11"
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
 
-
-        {/* Seção 06 - Diferenciais */}
-        <section id="diferenciais" className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                Por que construir com a M3 Engenharia e Construções?
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {differentials.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <Card key={index} className="border-border hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6 text-center">
-                      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <Icon className="w-8 h-8 text-primary" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-foreground mb-2">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Seção 07 - Essência */}
-        <section className="py-24 bg-primary">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
-              Segurança e tranquilidade
-            </h2>
-            <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-10 leading-relaxed">
-              Quando você escolhe a M3, escolhe a certeza de prazos cumpridos e qualidade impecável. Nossa experiência e fabricação própria transformam seu projeto em realidade com total segurança.
-            </p>
-            <Button asChild size="lg" variant="outline" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 text-lg px-10">
-              <a href="#" id="cta-merlin4">
-                Solicite um orçamento
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
-          </div>
-        </section>
-
-        {/* Seção 07.5 - Parceiros */}
-        <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-foreground mb-4">
-                Nossos Parceiros
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Empresas que confiam em nossas soluções
-              </p>
-            </div>
-            <PartnersCarousel partners={partners} />
-          </div>
-        </section>
-
-        {/* Seção 08 - Sobre Nós */}
-        <section id="sobre" className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
-            <div className="text-center max-w-4xl mx-auto mb-16">
-              <h2 className="text-5xl font-bold text-foreground mb-6">
-                Engenharia que Você Pode Confiar
-              </h2>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                Fundada em 2022, a M3 Engenharia nasceu com o propósito de oferecer tranquilidade total aos clientes. Nosso foco está em obras industriais e estruturas pré-moldadas, com agilidade, segurança e qualidade. Já conquistamos mais de 10 obras consecutivas com o mesmo cliente, prova da nossa dedicação e excelência.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-              <Card className="border-border text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <div className="text-6xl font-bold text-primary mb-3">2022</div>
-                  <div className="text-lg font-semibold text-foreground mb-2">Ano de Fundação</div>
-                  <div className="text-sm text-muted-foreground">Empresa jovem e inovadora</div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-border text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <div className="text-6xl font-bold text-primary mb-3">20+</div>
-                  <div className="text-lg font-semibold text-foreground mb-2">Anos de Experiência</div>
-                  <div className="text-sm text-muted-foreground">Da equipe técnica</div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-border text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <div className="text-6xl font-bold text-primary mb-3">100%</div>
-                  <div className="text-lg font-semibold text-foreground mb-2">Projetos no Prazo</div>
-                  <div className="text-sm text-muted-foreground">Histórico comprovado</div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-border text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-8">
-                  <div className="text-6xl font-bold text-primary mb-3">20+</div>
-                  <div className="text-lg font-semibold text-foreground mb-2">Clientes Atendidos</div>
-                  <div className="text-sm text-muted-foreground">Satisfação garantida</div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Seção 09 - Hero Final / CTA */}
-        <section id="contato" className="py-24 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 max-w-4xl mx-auto leading-tight">
-              Conte com as nossas soluções para construir ou expandir a sua operação industrial
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-              Fale conosco e veja como nossas soluções garantem agilidade e segurança
-            </p>
-            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground text-lg px-10" asChild>
-              <a href="#" id="cta-merlin5">
-                Solicite um orçamento
-                <ChevronRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">100%</div>
-                <div className="text-sm text-muted-foreground">Obras entregues no prazo</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">10+</div>
-                <div className="text-sm text-muted-foreground">Obras consecutivas com mesmo cliente</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-primary mb-2">20+</div>
-                <div className="text-sm text-muted-foreground">Anos de experiência da equipe</div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <Footer />
-    </div>
-  );
-};
+    <SecaoContato idDoBotao="cta-merlin2" />
+  </Pagina>
+);
 
 export default Home;

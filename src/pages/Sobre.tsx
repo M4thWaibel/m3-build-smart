@@ -30,7 +30,7 @@ const Sobre = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container mx-auto px-4 text-center">
+          <div className="moldura text-center">
             <h1 className="text-5xl font-bold text-foreground mb-6">
               Sobre a M3 Engenharia e Construções
             </h1>
@@ -42,7 +42,7 @@ const Sobre = () => {
 
         {/* Story Section */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <img 
@@ -64,7 +64,7 @@ const Sobre = () => {
                     Um dos nossos maiores orgulhos é ter realizado 10 obras consecutivas com o mesmo cliente, demonstrando a confiança e satisfação que construímos através de resultados consistentes e relacionamentos transparentes.
                   </p>
                   <p>
-                    Hoje, com capacidade de produzir 600m³ de pré-moldados e 50 toneladas de estruturas metálicas por mês, estamos preparados para atender projetos de qualquer porte, sempre com o mesmo compromisso com a qualidade que nos define.
+                    Hoje, com capacidade de produzir 2.000 m³ de pré-moldados e 50 toneladas de estruturas metálicas por mês, estamos preparados para atender projetos de qualquer porte, sempre com o mesmo compromisso com a qualidade que nos define.
                   </p>
                 </div>
               </div>
@@ -74,7 +74,7 @@ const Sobre = () => {
 
         {/* Mission & Vision Section */}
         <section className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <Card className="border-border">
                 <CardContent className="p-8">
@@ -100,7 +100,7 @@ const Sobre = () => {
 
         {/* Values Section */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
               Nossos Valores
             </h2>
@@ -125,7 +125,7 @@ const Sobre = () => {
 
         {/* Numbers Section */}
         <section className="py-20 bg-primary">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <h2 className="text-3xl font-bold text-primary-foreground mb-12 text-center">
               A M3 em Números
             </h2>
@@ -139,7 +139,7 @@ const Sobre = () => {
                 <div className="text-primary-foreground/80">Anos de experiência</div>
               </div>
               <div className="text-center">
-                <div className="text-5xl font-bold text-primary-foreground mb-2">600m³</div>
+                <div className="text-5xl font-bold text-primary-foreground mb-2">2.000 m³</div>
                 <div className="text-primary-foreground/80">Pré-moldados/mês</div>
               </div>
               <div className="text-center">

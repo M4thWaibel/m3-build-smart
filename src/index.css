@@ -5,38 +5,44 @@
 
 @layer base {
   :root {
-    /* M3 Engenharia Color System - HSL Only */
-    --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 0 0% 0%; /* #000000 */
+    /* Cores da M3 (variáveis "M3 · Proposta" no Figma), em HSL para o Tailwind aplicar opacidade */
+    --azul: 214 85% 23%;      /* #09346D azul/m3 */
+    --noite: 215 71% 13%;     /* #0A1E3A azul/noite */
+    --obra: 45 96% 48%;       /* #F2B705 amarelo/obra: só destaque e cota sobre foto */
+    --concreto: 120 4% 93%;   /* #ECEEEC fundo das seções alternadas */
+    --aco: 215 12% 38%;       /* #56606E texto secundário */
+    --linha: 213 11% 84%;     /* #D3D7DC divisórias e bordas */
+
+    --background: 0 0% 100%;
+    --foreground: var(--noite);
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: var(--noite);
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: var(--noite);
 
-    /* Brand Colors */
-    --primary: 214 85% 23%; /* #0F3469 - Azul institucional */
+    --primary: var(--azul);
     --primary-foreground: 0 0% 100%;
     --primary-hover: 214 85% 20%;
 
-    --secondary: 0 0% 85%; /* #D9D9D9 - Cinza neutro */
-    --secondary-foreground: 0 0% 0%;
+    --secondary: var(--concreto);
+    --secondary-foreground: var(--noite);
 
-    --muted: 0 0% 95%;
-    --muted-foreground: 0 0% 40%;
+    --muted: var(--concreto);
+    --muted-foreground: var(--aco);
 
-    --accent: 214 85% 23%;
+    --accent: var(--azul);
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 85%; /* #D9D9D9 */
-    --input: 0 0% 85%;
-    --ring: 214 85% 23%;
+    --border: var(--linha);
+    --input: var(--linha);
+    --ring: var(--azul);
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     /* Gradient & Effects */
     --gradient-hero: linear-gradient(135deg, hsl(214 85% 23% / 0.05) 0%, hsl(0 0% 100%) 100%);
@@ -51,7 +57,18 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Largura útil da proposta: 1312 px com 64 px de margem em 1440 */
+  .moldura {
+    @apply mx-auto w-full max-w-[1440px] px-4 md:px-8 lg:px-16;
   }
 }
 
@@ -64,6 +81,19 @@ body {
   scrollbar-gutter: stable;
 }
 
-section[id] {
-  scroll-margin-top: 80px;
+/* Âncoras param abaixo do cabeçalho fixo (64 px no celular, 84 px a partir de lg) */
+[id] {
+  scroll-margin-top: 64px;
+}
+
+@media (min-width: 1024px) {
+  [id] {
+    scroll-margin-top: 84px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

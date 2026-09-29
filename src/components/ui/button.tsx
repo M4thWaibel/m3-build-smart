@@ -15,8 +15,13 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
+        // Variantes da proposta (componente "Botão" no Figma)
+        destaque: "bg-obra text-noite hover:bg-obra/90",
+        contorno: "border-[1.5px] border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
+        contornoClaro: "border-[1.5px] border-white/80 bg-transparent text-white hover:bg-white/10",
       },
       size: {
+        m3: "h-[50px] rounded px-7 text-botao font-semibold",
         default: "h-10 px-4 py-2",
         sm: "h-9 rounded-md px-3",
         lg: "h-11 rounded-md px-8",

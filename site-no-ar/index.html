@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>M3 Engenharia e Construções - Soluções em Construções Industriais</title>
+    <meta name="description" content="Especialistas em galpões industriais, estruturas pré-moldadas e metálicas. Fabricação própria e entrega garantida no prazo." />
+    <meta name="author" content="M3 Engenharia e Construções" />
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TJ7M6XFG');
+    </script>
+    <!-- End Google Tag Manager -->
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <meta property="og:title" content="M3 Engenharia e Construções - Soluções em Construções Industriais" />
+    <meta property="og:description" content="Especialistas em galpões industriais, estruturas pré-moldadas e metálicas. Fabricação própria e entrega garantida no prazo." />
+    <meta property="og:type" content="website" />
+    <script type="module" crossorigin src="/assets/index-DqdN77M-.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-TodQ7dcY.css">
+  </head>
+
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJ7M6XFG"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <div id="root"></div>
+    
+    <!-- Merlin Chatbot Integration -->
+    <script src='https://scripts.gomerlin.com.br/merlin.js'></script>
+    <script>
+        Merlin.Popup.initFromSource("https://tools.gomerlin.com.br/popup/347fd9a8-e4e3-4325-b9af-9619f19fdd92");
+
+        function waitForElm(selector) {
+            return new Promise(resolve => {
+                if (document.querySelector(selector)) {
+                    return resolve(document.querySelector(selector));
+                }
+
+                const observer = new MutationObserver(mutations => {
+                    if (document.querySelector(selector)) {
+                        resolve(document.querySelector(selector));
+                        observer.disconnect();
+                    }
+                });
+
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+            });
+        }
+
+        waitForElm('.merlin-button').then((elm) => {
+            const numberOfMerlinButtons = 15; // Altere esse valor para o número de botões que deseja criar
+
+            for (let i = 1; i <= numberOfMerlinButtons; i++) {
+                const ctaMerlinID = `#cta-merlin${i}`;
+                const ctaMerlinElement = document.querySelector(ctaMerlinID);
+
+                if (ctaMerlinElement) {
+                    ctaMerlinElement.addEventListener('click', function () {
+                        document.querySelector(".merlin-button").click()
+                    });
+                }
+            }
+        });
+    </script>
+  </body>
+</html>

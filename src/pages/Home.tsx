@@ -33,6 +33,8 @@ import logo5 from "@/assets/Logo5.jpg";
 import logo6 from "@/assets/Logo6.jpg";
 import logo7 from "@/assets/Logo7.jpg";
 import logo8 from "@/assets/Logo8.jpg";
+import logo9 from "@/assets/Logo9.png";
+import logo10 from "@/assets/Logo10.png";
 
 const capacidades = [
   { numero: "2.000", unidade: "m³", texto: "de pré-moldados por mês" },
@@ -80,6 +82,8 @@ const clientes = [
   { logo: logo6, nome: "Unafe" },
   { logo: logo7, nome: "Vollmens" },
   { logo: logo8, nome: "West Brasil" },
+  { logo: logo9, nome: "Cobrecom" },
+  { logo: logo10, nome: "Angelelli" },
 ];
 
 const destaque = obraPorSlug(DESTAQUE) as Obra;
@@ -255,18 +259,20 @@ const Home = () => (
     <section aria-labelledby="clientes-titulo" className="pb-[72px] lg:pb-[120px]">
       <div className="moldura">
         <div className="border-t border-linha pt-8 lg:flex lg:items-center lg:gap-16 lg:pt-12">
-          <h2 id="clientes-titulo" className="font-sans text-pequeno font-normal text-aco lg:w-[180px] lg:shrink-0">
+          <h2 id="clientes-titulo" className="text-balance font-sans text-pequeno font-normal text-aco lg:w-[180px] lg:shrink-0">
             Empresas que confiam na M3
           </h2>
-          <ul className="mt-6 grid grid-cols-4 gap-x-2.5 gap-y-5 lg:mt-0 lg:flex lg:flex-1 lg:justify-between">
+          {/* Linhas de 4 (celular) ou 6 (tablet) com a última centralizada; de lg a 1400 px, duas linhas de 5;
+              acima disso, uma linha só (em 10 colunas mais estreitas os logos ficariam ilegíveis) */}
+          <ul className="mt-6 flex flex-wrap justify-center gap-x-2.5 gap-y-5 lg:mt-0 lg:grid lg:flex-1 lg:grid-cols-5 lg:gap-x-4 lg:gap-y-6 min-[1400px]:grid-cols-10">
             {clientes.map((cliente) => (
-              <li key={cliente.nome}>
+              <li key={cliente.nome} className="w-[82px] md:w-[104px] lg:w-auto">
                 <img
                   src={cliente.logo}
                   alt={cliente.nome}
                   loading="lazy"
                   decoding="async"
-                  className="h-[34px] w-full object-contain mix-blend-multiply grayscale lg:h-11 lg:w-28"
+                  className="h-[34px] w-full object-contain mix-blend-multiply grayscale lg:h-11"
                 />
               </li>
             ))}

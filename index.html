@@ -21,7 +21,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <meta property="og:title" content="M3 Engenharia e Construções - Soluções em Construções Industriais" />
     <meta property="og:description" content="Especialistas em galpões industriais, estruturas pré-moldadas e metálicas. Fabricação própria e entrega garantida no prazo." />
@@ -40,44 +40,32 @@
     <script type="module" src="/src/main.tsx"></script>
     
     <!-- Merlin Chatbot Integration -->
-    <script src='https://scripts.gomerlin.com.br/merlin.js'></script>
     <script>
-        Merlin.Popup.initFromSource("https://tools.gomerlin.com.br/popup/347fd9a8-e4e3-4325-b9af-9619f19fdd92");
-
-        function waitForElm(selector) {
-            return new Promise(resolve => {
-                if (document.querySelector(selector)) {
-                    return resolve(document.querySelector(selector));
-                }
-
-                const observer = new MutationObserver(mutations => {
-                    if (document.querySelector(selector)) {
-                        resolve(document.querySelector(selector));
-                        observer.disconnect();
-                    }
-                });
-
-                observer.observe(document.body, {
-                    childList: true,
-                    subtree: true
-                });
-            });
-        }
-
-        waitForElm('.merlin-button').then((elm) => {
-            const numberOfMerlinButtons = 15; // Altere esse valor para o número de botões que deseja criar
-
-            for (let i = 1; i <= numberOfMerlinButtons; i++) {
-                const ctaMerlinID = `#cta-merlin${i}`;
-                const ctaMerlinElement = document.querySelector(ctaMerlinID);
-
-                if (ctaMerlinElement) {
-                    ctaMerlinElement.addEventListener('click', function () {
-                        document.querySelector(".merlin-button").click()
-                    });
-                }
-            }
+        // Todo botão de orçamento (data-merlin ou id cta-merlinN) abre o bot de WhatsApp da Merlin.
+        // A escuta fica no documento, então vale também para os botões que o React monta depois,
+        // ao trocar de página sem recarregar. Sem o bot na tela (não carregou, bloqueador, escondido
+        // por filtro de anúncio), o clique segue o próprio link, que leva ao WhatsApp comercial.
+        document.addEventListener('click', function (evento) {
+            if (evento.button !== 0 || evento.ctrlKey || evento.metaKey || evento.shiftKey || evento.altKey) return;
+            var alvo = evento.target instanceof Element ? evento.target.closest('[data-merlin], [id^="cta-merlin"]') : null;
+            if (!alvo) return;
+            var bot = document.querySelector('.merlin-button');
+            if (!bot || !bot.getClientRects().length) return;
+            evento.preventDefault();
+            // Duplo clique: o segundo clique fecharia o chat que o primeiro abriu
+            if (evento.detail > 1) return;
+            bot.click();
         });
+
+        function iniciarMerlin() {
+            try {
+                Merlin.Popup.initFromSource("https://tools.gomerlin.com.br/popup/347fd9a8-e4e3-4325-b9af-9619f19fdd92");
+            } catch (erro) {
+                // merlin.js veio quebrado: os botões caem no link do WhatsApp
+            }
+        }
     </script>
+    <!-- async: o site aparece sem esperar o servidor da Merlin; o bot entra quando chegar -->
+    <script async src='https://scripts.gomerlin.com.br/merlin.js' onload="iniciarMerlin()"></script>
   </body>
 </html>

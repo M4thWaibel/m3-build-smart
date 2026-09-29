@@ -28,7 +28,7 @@ const TrabalheConosco = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <Briefcase className="w-16 h-16 text-primary mb-6" />
@@ -52,7 +52,7 @@ const TrabalheConosco = () => {
 
         {/* Benefits Section */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
               Por que trabalhar na M3?
             </h2>
@@ -77,7 +77,7 @@ const TrabalheConosco = () => {
 
         {/* Positions Section */}
         <section className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
               Vagas Disponíveis
             </h2>
@@ -103,7 +103,7 @@ const TrabalheConosco = () => {
 
         {/* Culture Section */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl font-bold text-foreground mb-6">
                 Nossa Cultura
@@ -131,7 +131,7 @@ const TrabalheConosco = () => {
 
         {/* Form Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-foreground mb-4">
                 Pronto para fazer parte da nossa equipe?

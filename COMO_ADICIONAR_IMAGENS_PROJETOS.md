@@ -17,85 +17,82 @@
 
 ## Visão Geral
 
-Cada projeto no portfólio possui uma **galeria de imagens** exibida no modal quando o usuário clica no card. A **primeira imagem** da galeria também é usada como capa do card.
+Cada obra tem uma **página própria** em `/obras/<endereço-da-obra>` (ex.: `/obras/galpao-fabril-boituva`), com galeria de fotos, ficha técnica e texto. A lista completa fica em `/obras`, e a Home mostra uma obra em destaque e três cartões.
 
-As imagens ficam organizadas em **pastas dentro de `src/assets/`**, uma pasta por projeto.
+A **primeira imagem** da pasta é a capa: aparece no cartão, no destaque da Home e abre a galeria.
+
+As imagens ficam organizadas em **pastas dentro de `src/assets/`**, uma pasta por obra.
 
 ---
 
 ## Como Funciona Agora
 
-> ✅ **Não é mais preciso editar imports nem o array de projetos para trocar fotos.**
+> ✅ **Não é preciso editar imports para trocar fotos.**
 
-O arquivo [`src/pages/Home.tsx`](src/pages/Home.tsx) carrega **automaticamente** todas as imagens de cada pasta de projeto usando `import.meta.glob` do Vite:
+Os dados das obras ficam em [`src/data/obras.ts`](src/data/obras.ts). Esse arquivo carrega **automaticamente** todas as imagens de cada pasta de projeto usando `import.meta.glob` do Vite:
 
 ```typescript
-const galleryFiles = import.meta.glob(
-  "../assets/Projeto*/*.{jpg,JPG,jpeg,JPEG,png,PNG}",
-  { eager: true, query: "?url", import: "default" }
-);
+const arquivos = import.meta.glob("../assets/Projeto*/*.{jpg,JPG,jpeg,JPEG,png,PNG}", {
+  eager: true,
+  query: "?url",
+  import: "default",
+});
 ```
 
 Regras automáticas:
 
-- ✅ Toda imagem `.jpg`, `.jpeg` ou `.png` (maiúsculas ou minúsculas) dentro de uma pasta `Projeto N ...` entra na galeria daquele projeto.
+- ✅ Toda imagem `.jpg`, `.jpeg` ou `.png` (maiúsculas ou minúsculas) dentro de uma pasta `Projeto N ...` entra na galeria daquela obra.
 - ✅ A **ordem** segue o nome do arquivo (ordem numérica natural: `1.1`, `1.2`, `1.3`...).
-- ✅ A **primeira** imagem da galeria vira a capa do card.
+- ✅ A **primeira** imagem vira a capa.
 - 🚫 Arquivos `.txt` são ignorados.
 - 🚫 Arquivos `.DNG` (RAW) são ignorados — **o navegador não exibe esse formato**. Converta para `.jpg` antes de usar.
 
-Cada projeto no array é ligado à sua pasta por um **token** (o número da pasta), por exemplo:
-
-```typescript
-const galleries = {
-  galpaoFabril: getGallery("/Projeto 1 "),
-  predioAdministrativo: getGallery("/Projeto 4 "),
-  // ...
-};
-```
+Cada obra é ligada à sua pasta pelo número dela, por exemplo `fotos: fotosDaPasta("1")` para a pasta `Projeto 1 ...`.
 
 ---
 
 ## Passo a Passo
 
-### Para TROCAR ou ADICIONAR fotos de um projeto existente
+### Para TROCAR ou ADICIONAR fotos de uma obra existente
 
-1. Abra a pasta do projeto em `src/assets/` (veja o [mapa abaixo](#mapa-de-pastas--projetos)).
+1. Abra a pasta da obra em `src/assets/` (veja o [mapa abaixo](#mapa-de-pastas--projetos)).
 2. **Adicione, remova ou substitua** os arquivos de imagem (`.jpg`, `.jpeg`, `.png`).
 3. Para controlar a **ordem**, nomeie os arquivos numericamente. Ex.:
    ```
-   Projeto 1.1.jpg   ← capa do card e 1ª do carrossel
+   Projeto 1.1.jpg   ← capa e 1ª foto da galeria
    Projeto 1.2.jpg
    Projeto 1.3.jpg
    ```
 4. Pronto. Salve e rode o projeto — não precisa mexer no código.
 
-### Para CRIAR um novo projeto (projeto 13, 14...)
+### Para CRIAR uma nova obra (projeto 13, 14...)
 
 1. Crie a pasta `src/assets/Projeto 13 Nome do Cliente/` e coloque as imagens dentro.
-2. Em [`src/pages/Home.tsx`](src/pages/Home.tsx), adicione a galeria ao objeto `galleries`:
-   ```typescript
-   const galleries = {
-     // ... existentes
-     meuNovoProjeto: getGallery("/Projeto 13 "),
-   };
-   ```
-3. Adicione o objeto do projeto ao array `projects`:
+2. Em [`src/data/obras.ts`](src/data/obras.ts), acrescente a obra à lista `obras`, na posição em que ela deve aparecer em `/obras`:
    ```typescript
    {
-     image: galleries.meuNovoProjeto[0],
-     title: "Novo Galpão",
-     description: "Descrição curta para o card...",
-     year: "2025",
-     location: "São Paulo, SP",
-     area: "5.000 m²",
-     client: "Vão Livre 40m",
-     status: "concluido" as const,
-     gallery: galleries.meuNovoProjeto,
+     slug: "galpao-logistico-tatui",      // vira o endereço /obras/galpao-logistico-tatui
+     titulo: "Galpão Logístico",
+     cidade: "Tatuí, SP",
+     ano: "2026",
+     situacao: "entregue",                 // ou "em_andamento"
+     subtitulo: "Galpão com pilares pré-moldados e cobertura metálica em Tatuí, SP.",
+     descricao: "Texto de 'Sobre a obra'.",
+     resumo: "Tatuí, SP. 5.000 m² com vão livre de 40 m, 2026.",  // linha do cartão
+     ficha: [
+       { rotulo: "Área", valor: "5.000 m²" },
+       { rotulo: "Vão livre", valor: "40 m" },
+       { rotulo: "Estrutura", valor: "Pré-moldada e metálica" },
+     ],
+     cota: "vão livre 40 m",               // opcional: só com medida horizontal real
+     fotos: fotosDaPasta("13"),
    },
    ```
+3. Local, Ano e Situação entram sozinhos na ficha técnica; em `ficha` vão só as outras linhas.
+4. O texto de abertura ("Doze obras em ...") e o botão "Ver as 12 obras" se atualizam sozinhos com a contagem e as cidades.
+5. Para trocar a obra em destaque ou os três cartões da Home, mude `DESTAQUE` e `VITRINE` no fim do mesmo arquivo.
 
-> 💡 O token (`"/Projeto 13 "`) precisa ter a **barra antes** e o **espaço depois** do número, para não confundir `Projeto 1` com `Projeto 10`/`11`/`12`.
+> 💡 O `slug` precisa ser único, sem acento e com hífens. Duas obras com o mesmo título se diferenciam pela cidade.
 
 ---
 
@@ -103,7 +100,7 @@ const galleries = {
 
 A numeração das pastas **não** segue a ordem de exibição no site. Mapeamento atual:
 
-| Pasta em `src/assets/`              | Projeto no site                       |
+| Pasta em `src/assets/`              | Obra no site                          |
 |-------------------------------------|---------------------------------------|
 | `Projeto 1 Galpão Fabril - Arq`     | Galpão Fabril (Boituva)               |
 | `Projeto 2 Galpão Industrial - tras arq 6` | Galpão Industrial (Boituva, 22m) |
@@ -124,9 +121,10 @@ A numeração das pastas **não** segue a ordem de exibição no site. Mapeament
 
 ### 📐 Dimensões e Qualidade
 
-- ✅ **Aspecto 16:9** (landscape) funciona melhor no modal
-- ✅ Use **mesma resolução** para todas as imagens de um projeto
-- ✅ Coloque a melhor foto como a **primeira** (será a capa do card)
+- ✅ **Fotos na horizontal** funcionam melhor: a galeria é 16:9 no computador e 4:3 no celular
+- ✅ Use **mesma resolução** para todas as imagens de uma obra
+- ✅ Coloque a melhor foto como a **primeira** (será a capa)
+- ✅ A cota amarela (`cota`) aparece só sobre a capa; escolha uma capa em que a medida faça sentido
 
 ### 🚀 Performance (IMPORTANTE)
 
@@ -137,7 +135,7 @@ A numeração das pastas **não** segue a ordem de exibição no site. Mapeament
 
 ### 📝 Nomenclatura
 
-Para controlar a ordem do carrossel, use nomes numéricos sequenciais:
+Para controlar a ordem da galeria, use nomes numéricos sequenciais:
 ```
 ✅ Projeto 1.1.jpg
 ✅ Projeto 1.2.jpg
@@ -165,28 +163,29 @@ Qualquer nome funciona, mas a ordem de exibição é a ordem alfabética/numéri
 **Causa:** A ordem segue o nome do arquivo.
 - **Solução:** renomeie os arquivos com prefixo numérico (`1.1`, `1.2`, `1.3`...).
 
-### ❌ Problema: Capa do card errada
+### ❌ Problema: Capa errada
 
-**Causa:** A capa é sempre a **primeira** imagem da galeria.
+**Causa:** A capa é sempre a **primeira** imagem da pasta.
 - **Solução:** renomeie a foto desejada para que ela venha primeiro na ordem alfabética.
 
-### ❌ Problema: Projeto novo não aparece
+### ❌ Problema: Obra nova não aparece
 
-- Verifique se você adicionou tanto a entrada em `galleries` quanto o objeto no array `projects`.
-- Verifique se o token (`"/Projeto 13 "`) tem a barra antes e o espaço depois do número.
+- Verifique se a obra foi acrescentada à lista `obras` em `src/data/obras.ts`.
+- Verifique se o número em `fotosDaPasta("13")` é o mesmo da pasta `Projeto 13 ...`.
+- Página da obra abre "Esta página não existe": confira se o endereço usa exatamente o `slug`.
 
 ---
 
 ## 🎯 Checklist Rápido
 
-Para trocar fotos de um projeto existente:
+Para trocar fotos de uma obra existente:
 
 - [ ] As imagens estão na pasta correta dentro de `src/assets/` (veja o mapa)
 - [ ] São `.jpg`, `.jpeg` ou `.png` (não `.DNG`)
 - [ ] Estão nomeadas na ordem desejada (numérica)
 - [ ] Foram otimizadas (< 500 KB cada)
-- [ ] Testei o card e o modal clicando no projeto
+- [ ] Abri a página da obra e conferi a capa, a galeria e o cartão em `/obras`
 
 ---
 
-**Última atualização:** 09 de Junho de 2026
+**Última atualização:** 24 de Setembro de 2026

@@ -28,7 +28,7 @@ const Fornecedores = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container mx-auto px-4 text-center">
+          <div className="moldura text-center">
             <Handshake className="w-16 h-16 text-primary mx-auto mb-6" />
             <h1 className="text-5xl font-bold text-foreground mb-6">
               Seja Nosso Fornecedor
@@ -41,7 +41,7 @@ const Fornecedores = () => {
 
         {/* Benefits Section */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
               Por que ser nosso fornecedor?
             </h2>
@@ -79,7 +79,7 @@ const Fornecedores = () => {
 
         {/* Categories Section */}
         <section className="py-20 bg-muted">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
               Categorias de Interesse
             </h2>
@@ -98,7 +98,7 @@ const Fornecedores = () => {
 
         {/* Requirements Section */}
         <section className="py-20 bg-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-foreground mb-12 text-center">
                 Requisitos para Fornecedores
@@ -117,7 +117,7 @@ const Fornecedores = () => {
 
         {/* Form Section */}
         <section className="py-24 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container mx-auto px-4">
+          <div className="moldura">
             <div className="text-center mb-12">
               <h2 className="text-4xl font-bold text-foreground mb-4">
                 Pronto para se tornar nosso parceiro?

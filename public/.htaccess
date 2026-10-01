@@ -9,3 +9,11 @@
   # Qualquer outra rota cai no index.html (React Router assume daqui)
   RewriteRule . /index.html [L]
 </IfModule>
+
+# O index.html sempre confere com o servidor antes de ser usado: é ele que aponta para os
+# JS e CSS do build atual. Os arquivos de assets/ têm o hash no nome e podem ficar em cache.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

@@ -48,8 +48,8 @@ jobs:
           printf '%s\n' "$HOSTS" > ~/.ssh/known_hosts
 
       # --checksum: o build recria todos os arquivos, então a data não serve para comparar.
-      # protect /*: nada solto na raiz do public_html é apagado; só some o que ficou velho
-      # dentro de assets/ (os JS e CSS de builds anteriores).
+      # Nada é apagado no servidor: quem ainda tem um index.html antigo aberto ou guardado
+      # pede o JS daquele build, e ele precisa continuar lá.
       - name: ${{ github.event_name == 'pull_request' && 'Ensaiar o envio (nada é enviado)' || 'Enviar para a Hostinger' }}
         if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
         env:
@@ -59,7 +59,7 @@ jobs:
           DESTINO: ${{ secrets.M3_SSH_DESTINO }}
           ENSAIO: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
         run: |
-          rsync -rlz --checksum --delete-after --filter='protect /*' --chmod=D755,F644 \
+          rsync -rlz --checksum --chmod=D755,F644 \
             --itemize-changes $ENSAIO \
             -e "ssh -p $PORTA -i $HOME/.ssh/publicar -o StrictHostKeyChecking=yes -o BatchMode=yes" \
             dist/ "$USUARIO@$HOST:$DESTINO/"

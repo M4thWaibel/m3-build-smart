@@ -17,7 +17,7 @@ import {
   rotuloDaSituacao,
   type Obra,
 } from "@/data/obras";
-import heroImage from "../assets/hero-industrial.png";
+import heroImage from "@/assets/hero-galpao.jpg";
 import fabricacaoImage from "@/assets/fabricacao-propria.jpg";
 import construcoesImage from "@/assets/projeto-3.jpg";
 import galpoesImage from "@/assets/projeto-1.jpg";
@@ -95,7 +95,7 @@ const Home = () => (
     <section id="hero" className="relative isolate flex min-h-[700px] items-end overflow-hidden bg-noite lg:min-h-[760px]">
       <img
         src={heroImage}
-        alt="Vista aérea da fábrica da M3 com peças pré-moldadas e estruturas metálicas no pátio"
+        alt="Vista aérea de galpão em estrutura pré-moldada com cobertura metálica, e vigas pré-moldadas estocadas no pátio"
         className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
       <div

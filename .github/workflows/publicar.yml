@@ -1,0 +1,65 @@
+# Publica o site na Hostinger a cada push no main.
+# Em pull request só ensaia: gera o site e lista o que mudaria no servidor, sem enviar nada.
+name: Publicar o site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: publicar-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Conferir o build
+        run: |
+          test -f dist/index.html
+          # sem o .htaccess, recarregar qualquer rota que não seja a Home dá 404
+          test -f dist/.htaccess
+
+      # PR vindo de fork não recebe os segredos; nele o fluxo para no build
+      - name: Preparar o acesso ao servidor
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          CHAVE: ${{ secrets.M3_SSH_CHAVE }}
+          HOSTS: ${{ secrets.M3_SSH_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$CHAVE" > ~/.ssh/publicar
+          chmod 600 ~/.ssh/publicar
+          printf '%s\n' "$HOSTS" > ~/.ssh/known_hosts
+
+      # --checksum: o build recria todos os arquivos, então a data não serve para comparar.
+      # protect /*: nada solto na raiz do public_html é apagado; só some o que ficou velho
+      # dentro de assets/ (os JS e CSS de builds anteriores).
+      - name: ${{ github.event_name == 'pull_request' && 'Ensaiar o envio (nada é enviado)' || 'Enviar para a Hostinger' }}
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        env:
+          HOST: ${{ secrets.M3_SSH_HOST }}
+          PORTA: ${{ secrets.M3_SSH_PORTA }}
+          USUARIO: ${{ secrets.M3_SSH_USUARIO }}
+          DESTINO: ${{ secrets.M3_SSH_DESTINO }}
+          ENSAIO: ${{ github.event_name == 'pull_request' && '--dry-run' || '' }}
+        run: |
+          rsync -rlz --checksum --delete-after --filter='protect /*' --chmod=D755,F644 \
+            --itemize-changes $ENSAIO \
+            -e "ssh -p $PORTA -i $HOME/.ssh/publicar -o StrictHostKeyChecking=yes -o BatchMode=yes" \
+            dist/ "$USUARIO@$HOST:$DESTINO/"
